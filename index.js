@@ -1,3 +1,6 @@
+// ESLint Shareable configs documentation:
+//     https://eslint.org/docs/developer-guide/shareable-configs
+//
 // Note:
 //     To list install peerDependencies:
 //         $ npm info "eslint-config-ironplate" peerDependencies
@@ -101,7 +104,7 @@ module.exports = {
         // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/extensions.md
         // Note:
         //     The requirement for compulsory extension seems to be well served by
-        //     https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/file-extension-in-import.md
+        //     https://github.com/mysticatea/eslint-plugin-node/blob/HEAD/docs/rules/file-extension-in-import.md
         //     which is currently being used elsewhere in this file
         "import/extensions": [
             "error",
@@ -112,7 +115,7 @@ module.exports = {
         ],
         /* */
 
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
+        // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
         "react/self-closing-comp": [
             "error",
             {
