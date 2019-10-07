@@ -93,6 +93,9 @@ module.exports = {
         // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/exports-last.md
         "import/exports-last": [ "error" ],
 
+        // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
+        "import/no-default-export": [ "error" ],
+
         /*
         // Commented out this rule since it doesn't have expected capabilities as of 2019-August
         // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/extensions.md
