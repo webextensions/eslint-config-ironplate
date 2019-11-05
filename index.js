@@ -40,11 +40,12 @@ module.exports = {
         "sourceType": "module" // https://github.com/AtomLinter/linter-eslint/issues/462#issuecomment-190770417
     },
     "plugins": [
-        "filenames",  // https://www.npmjs.com/package/eslint-plugin-filenames
-        "import",     // https://www.npmjs.com/package/eslint-plugin-import
+        "filenames",   // https://www.npmjs.com/package/eslint-plugin-filenames
+        "import",      // https://www.npmjs.com/package/eslint-plugin-import
         "node",
-        "react",      // https://www.npmjs.com/package/eslint-plugin-react
-        "react-hooks" // https://www.npmjs.com/package/eslint-plugin-react-hooks
+        "react",       // https://www.npmjs.com/package/eslint-plugin-react
+        "react-hooks", // https://www.npmjs.com/package/eslint-plugin-react-hooks
+        "unicorn"      // https://www.npmjs.com/package/eslint-plugin-unicorn
     ],
     "rules": {
         "indent": [
@@ -69,7 +70,6 @@ module.exports = {
 
         "semi": [ "error", "always" ],
         "no-console": "off",
-        "no-debugger": "off",
         "no-shadow": "off",
         "no-var": [ "error" ],
         "prefer-const": [ "error" ],
@@ -82,6 +82,10 @@ module.exports = {
                 "named": "never"
             }
         ],
+
+        "no-debugger": ["error"],
+        "no-template-curly-in-string": ["error"],
+        "one-var-declaration-per-line": ["error", "always"]
 
         // https://www.npmjs.com/package/eslint-plugin-filenames
         "filenames/match-exported": [
@@ -129,7 +133,44 @@ module.exports = {
 
         "node/no-missing-require": [ "error" ],
         "node/file-extension-in-import": [ "error" ],
-        "node/no-deprecated-api": [ "error" ]
+        "node/no-deprecated-api": [ "error" ],
+
+        "unicorn/consistent-function-scoping": "error",
+        "unicorn/custom-error-definition": "error",
+        "unicorn/error-message": "error",
+        "unicorn/escape-case": "error",
+        "unicorn/expiring-todo-comments": "error",
+        "unicorn/filename-case": [
+            "error",
+            {
+                "cases": {
+                    "camelCase": true,
+                    "pascalCase": true,
+                    "kebabCase": true
+                }
+            }
+        ],
+        "unicorn/new-for-builtins": "error",
+        "unicorn/no-abusive-eslint-disable": "error",
+        "unicorn/no-array-instanceof": "error",
+        "unicorn/no-console-spaces": "error",
+        "unicorn/no-fn-reference-in-iterator": "error",
+        "unicorn/no-for-loop": "error",
+        "unicorn/no-hex-escape": "error",
+        "unicorn/no-new-buffer": "error",
+        "unicorn/no-process-exit": "error",
+        "unicorn/no-unreadable-array-destructuring": "error",
+        "unicorn/no-unsafe-regex": "error",
+        "unicorn/no-unused-properties": "error",
+        "unicorn/no-zero-fractions": "error",
+        "unicorn/number-literal-case": "error",
+        "unicorn/prefer-add-event-listener": "error",
+        "unicorn/prefer-event-key": "error",
+        "unicorn/prefer-flat-map": "error",
+        "unicorn/prefer-text-content": "error",
+        "unicorn/prefer-type-error": "error",
+        "unicorn/regex-shorthand": "error",
+        "unicorn/throw-new-error": "error"
     },
     // https://eslint.org/docs/user-guide/configuring#adding-shared-settings
     "settings": {
