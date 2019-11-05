@@ -85,7 +85,7 @@ module.exports = {
 
         "no-debugger": ["error"],
         "no-template-curly-in-string": ["error"],
-        "one-var-declaration-per-line": ["error", "always"]
+        "one-var-declaration-per-line": ["error", "always"],
 
         // https://www.npmjs.com/package/eslint-plugin-filenames
         "filenames/match-exported": [
