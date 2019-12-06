@@ -169,7 +169,7 @@ module.exports = {
         "unicorn/prefer-flat-map": "error",
         "unicorn/prefer-text-content": "error",
         "unicorn/prefer-type-error": "error",
-        "unicorn/regex-shorthand": "error",
+        "unicorn/regex-shorthand": "off",
         "unicorn/throw-new-error": "error"
     },
     // https://eslint.org/docs/user-guide/configuring#adding-shared-settings
