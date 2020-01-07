@@ -68,12 +68,26 @@ module.exports = {
             }
         ],
 
+        "comma-dangle": ["error", "never"],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
         "semi": [ "error", "always" ],
+        "semi-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
         "no-console": "off",
         "no-shadow": "off",
         "no-var": [ "error" ],
         "prefer-const": [ "error" ],
-        "comma-dangle": ["error", "never"],
         "space-before-function-paren": [
             "error",
             {
