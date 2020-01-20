@@ -76,6 +76,7 @@ module.exports = {
                 "after": true
             }
         ],
+        "keyword-spacing": ["error"],
         "semi": [ "error", "always" ],
         "semi-spacing": [
             "error",
