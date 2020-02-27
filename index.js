@@ -56,7 +56,10 @@ module.exports = {
                 "ignoreComments": true // https://eslint.org/docs/rules/indent#ignorecomments
             }
         ],
+        "no-trailing-spaces": "error",
         "linebreak-style": [ "error", "unix" ],
+        "eol-last": ["error", "always"],
+        "unicode-bom": ["error", "never"],
 
         // http://eslint.org/docs/rules/quotes
         "quotes": [
