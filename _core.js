@@ -16,7 +16,7 @@ module.exports = {
     // http://eslint.org/docs/user-guide/configuring.html
     // https://gist.github.com/cletusw/e01a85e399ab563b1236
     "env": {
-        "es2021": true // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
+        "es2022": true // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
                        // This automatically sets the ecmaVersion parser option (parserOptions) to 12
     },
 
