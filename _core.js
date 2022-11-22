@@ -157,6 +157,7 @@ module.exports = {
                 "done",
                 "res.end",
                 "res.send",
+                "res.status",
                 "next"
             ]
         ],
