@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "./scripts/postinstall.sh",
+    "postversion": "git push --follow-tags",
     "test": "echo \"Warning: no test specified\""
   },
   "peerDependencies": {
