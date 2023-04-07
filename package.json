@@ -9,14 +9,14 @@
         "test": "echo \"Warning: no test specified\""
     },
     "peerDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.44.0",
-        "eslint": "^8.28.0",
-        "eslint-plugin-filenames": "^1.3.2",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-react": "^7.31.11",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-unicorn": "^45.0.0"
+        "@typescript-eslint/eslint-plugin": "latest",
+        "eslint": "latest",
+        "eslint-plugin-filenames": "latest",
+        "eslint-plugin-import": "latest",
+        "eslint-plugin-node": "latest",
+        "eslint-plugin-react": "latest",
+        "eslint-plugin-react-hooks": "latest",
+        "eslint-plugin-unicorn": "latest"
     },
     "repository": {
         "type": "git",
