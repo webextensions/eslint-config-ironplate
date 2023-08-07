@@ -1,8 +1,5 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"    # Change directory to the folder containing this file
-cd ../..                # Change directory to project's root folder
-
 # Colors:
 # https://stackoverflow.com/questions/5412761/using-colors-with-printf/5413029#5413029
 # https://stackoverflow.com/questions/4332478/read-the-current-text-color-in-a-xterm/4332530#4332530
@@ -23,9 +20,9 @@ MAGENTA="\033[0;35m" # MAGENTA=$(tput setaf 5)
 
 printf "\n";
 printf "\n${BLUE}If you are installing \"eslint-config-ironplate\" as a package, then:${NORMAL}";
-printf "\n     To list install peerDependencies:";
+printf "\n     To list its peerDependencies:";
 printf "\n         $ npm info \"eslint-config-ironplate\" peerDependencies";
 printf "\n         And add these dependencies to your project's package.json file";
-printf "\n     To install peerDependencies:";
+printf "\n     To install its peerDependencies:";
 printf "\n         $ npx install-peerdeps --dev eslint-config-ironplate";
 printf "\n\n";

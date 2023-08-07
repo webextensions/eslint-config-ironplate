@@ -1,6 +1,11 @@
 # Package lock
 package-lock.json
 
+# Output of 'npm pack'
+*.tgz
+
+# Ignore extracted output directory of `$ npm pack`. eg: "/owner-package-1.0.0/" extracted from "/owner-package-1.0.0.tgz"
+/*-*.*.*/
 
 # Logs
 logs
@@ -51,9 +56,6 @@ typings/
 
 # Optional REPL history
 .node_repl_history
-
-# Output of 'npm pack'
-*.tgz
 
 # Yarn Integrity file
 .yarn-integrity
