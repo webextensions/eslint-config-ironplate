@@ -12,6 +12,8 @@
 // TODO:
 //     Create "eslint-config-ironplate/base.js" which doesn't use any plugins
 
+const stylistic = require('@stylistic/eslint-plugin-js');
+
 module.exports = {
     // http://eslint.org/docs/user-guide/configuring.html
     // https://gist.github.com/cletusw/e01a85e399ab563b1236
@@ -21,16 +23,18 @@ module.exports = {
     },
 
     "plugins": [
-        "import",      // https://www.npmjs.com/package/eslint-plugin-import
-        "node",        // https://www.npmjs.com/package/eslint-plugin-node
-        "unicorn",     // https://www.npmjs.com/package/eslint-plugin-unicorn
-        "filenames"    // https://www.npmjs.com/package/eslint-plugin-filenames
+        "@stylistic/eslint-plugin-js",
+        "eslint-plugin-import",      // https://www.npmjs.com/package/eslint-plugin-import
+        "eslint-plugin-node",        // https://www.npmjs.com/package/eslint-plugin-node
+        "eslint-plugin-unicorn",     // https://www.npmjs.com/package/eslint-plugin-unicorn
+        "eslint-plugin-filenames"    // https://www.npmjs.com/package/eslint-plugin-filenames
     ],
 
     "extends": [
         "eslint:recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings"
+        "plugin:@stylistic/recommended-extends",
+        "plugin:eslint-plugin-import/errors",
+        "plugin:eslint-plugin-import/warnings",
     ],
 
     "globals": {
@@ -50,21 +54,46 @@ module.exports = {
     "settings": {},
 
     "rules": {
-        "indent": [
+        "unicode-bom": ["error", "never"],
+
+        "no-console": "off",
+        "no-shadow": "off",
+        "no-var": [ "error" ],
+        "prefer-const": [ "error" ],
+
+        "no-alert": ["error"],
+        "no-debugger": ["error"],
+        "no-template-curly-in-string": ["error"],
+
+        "array-callback-return": ["error"],
+        "no-constructor-return": ["error"],
+        "no-sequences": ["error"],
+
+        // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
+        "@stylistic/comma-dangle": ["error", "never"],
+        "@stylistic/comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "@stylistic/eol-last": ["error", "always"],
+        "@stylistic/indent": [
             "error",
             4,
             {
-                "SwitchCase": 1, // https://eslint.org/docs/rules/indent#switchcase
-                "ignoreComments": true // https://eslint.org/docs/rules/indent#ignorecomments
+                "SwitchCase": 1, // https://eslint.style/rules/js/indent#switchcase
+                "ignoreComments": true // https://eslint.style/rules/js/indent#ignorecomments
             }
         ],
-        "no-trailing-spaces": "error",
-        "linebreak-style": [ "error", "unix" ],
-        "eol-last": ["error", "always"],
-        "unicode-bom": ["error", "never"],
-
-        // http://eslint.org/docs/rules/quotes
-        "quotes": [
+        "@stylistic/keyword-spacing": ["error"],
+        "@stylistic/linebreak-style": [ "error", "unix" ],
+        "@stylistic/no-trailing-spaces": "error",
+        "@stylistic/object-curly-spacing": ["error", "always"],
+        "@stylistic/one-var-declaration-per-line": ["error", "always"],
+        // https://eslint.style/rules/js/quotes
+        "@stylistic/quotes": [
             "warn",
             "single",
             {
@@ -72,29 +101,15 @@ module.exports = {
                 "avoidEscape": true
             }
         ],
-
-        "comma-dangle": ["error", "never"],
-        "comma-spacing": [
+        "@stylistic/semi": [ "error", "always" ],
+        "@stylistic/semi-spacing": [
             "error",
             {
                 "before": false,
                 "after": true
             }
         ],
-        "keyword-spacing": ["error"],
-        "semi": [ "error", "always" ],
-        "semi-spacing": [
-            "error",
-            {
-                "before": false,
-                "after": true
-            }
-        ],
-        "no-console": "off",
-        "no-shadow": "off",
-        "no-var": [ "error" ],
-        "prefer-const": [ "error" ],
-        "space-before-function-paren": [
+        "@stylistic/space-before-function-paren": [
             "error",
             {
                 "anonymous": "always",
@@ -102,16 +117,6 @@ module.exports = {
                 "named": "never"
             }
         ],
-
-        "no-alert": ["error"],
-        "no-debugger": ["error"],
-        "no-template-curly-in-string": ["error"],
-        "one-var-declaration-per-line": ["error", "always"],
-
-        "array-callback-return": ["error"],
-        "no-constructor-return": ["error"],
-        "no-sequences": ["error"],
-        "object-curly-spacing": ["error", "always"],
 
         // https://www.npmjs.com/package/eslint-plugin-filenames
         "filenames/match-exported": [
@@ -162,7 +167,6 @@ module.exports = {
             ]
         ],
 
-        "unicorn/consistent-function-scoping": "error",
         "unicorn/custom-error-definition": "error",
         "unicorn/error-message": "error",
         "unicorn/escape-case": "error",

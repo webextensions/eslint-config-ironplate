@@ -3,15 +3,16 @@
     "version": "0.7.1",
     "description": "Shareable ESLint configuration",
     "engines": {
-        "node": ">=16"
+        "node": ">=18"
     },
     "main": "index.js",
     "scripts": {
         "postinstall": "./scripts/postinstall.sh",
         "postversion": "git push --follow-tags",
-        "test": "echo \"Warning: no test specified\""
+        "test": "pwd && npm run --prefix ./test/js test"
     },
     "peerDependencies": {
+        "@stylistic/eslint-plugin": "latest",
         "@typescript-eslint/eslint-plugin": "latest",
         "eslint": "latest",
         "eslint-plugin-filenames": "latest",
