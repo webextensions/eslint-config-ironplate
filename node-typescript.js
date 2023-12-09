@@ -19,6 +19,17 @@ thisConfig.extends = [
 thisConfig.rules = {
     ...thisConfig.rules,
 
+    // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
+    // https://eslint.style/rules
+    "@stylistic/member-delimiter-style": [
+        "error",
+        {
+            "singleline": { "delimiter": "comma", "requireLast": false },
+            "multiline": { "delimiter": "comma", "requireLast": false }
+        }
+    ],
+    "@stylistic/type-annotation-spacing": ["error", { "before": false, "after": true }],
+
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
 

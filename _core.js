@@ -70,6 +70,9 @@ module.exports = {
         "no-sequences": ["error"],
 
         // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
+        // https://eslint.style/rules
+        "@stylistic/arrow-parens": ["error", "always"],
+        "@stylistic/brace-style": "off",
         "@stylistic/comma-dangle": ["error", "never"],
         "@stylistic/comma-spacing": [
             "error",
@@ -87,11 +90,16 @@ module.exports = {
                 "ignoreComments": true // https://eslint.style/rules/js/indent#ignorecomments
             }
         ],
+        "@stylistic/indent-binary-ops": ["error", 0],
+        "@stylistic/key-spacing": "off",
         "@stylistic/keyword-spacing": ["error"],
         "@stylistic/linebreak-style": [ "error", "unix" ],
+        "@stylistic/max-statements-per-line": "off",
+        "@stylistic/no-multi-spaces": "off",
         "@stylistic/no-trailing-spaces": "error",
         "@stylistic/object-curly-spacing": ["error", "always"],
         "@stylistic/one-var-declaration-per-line": ["error", "always"],
+        "@stylistic/operator-linebreak": ["error", "after"],
         // https://eslint.style/rules/js/quotes
         "@stylistic/quotes": [
             "warn",
@@ -117,6 +125,7 @@ module.exports = {
                 "named": "never"
             }
         ],
+        "@stylistic/space-in-parens": "off",
 
         // https://www.npmjs.com/package/eslint-plugin-filenames
         "filenames/match-exported": [

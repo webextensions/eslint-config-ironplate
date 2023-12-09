@@ -39,6 +39,15 @@ thisConfig.settings = {
 
 thisConfig.rules = {
     ...thisConfig.rules,
+
+    // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
+    // https://eslint.style/rules
+    "@stylistic/jsx-indent": ["error", 4],
+    "@stylistic/jsx-indent-props": ["error", 4],
+    "@stylistic/jsx-one-expression-per-line": "off",
+    "@stylistic/jsx-tag-spacing": "off",
+    "@stylistic/jsx-wrap-multilines": "off",
+
     // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
     "react/self-closing-comp": [
         "error",
