@@ -56,6 +56,8 @@ module.exports = {
     "rules": {
         "unicode-bom": ["error", "never"],
 
+        "id-denylist": ["error", "DO_NOT_COMMIT", "DO_NOT_UNCOMMENT"],
+
         "no-console": "off",
         "no-shadow": "off",
         "no-var": [ "error" ],
