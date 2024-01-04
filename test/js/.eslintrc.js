@@ -6,7 +6,7 @@ module.exports = {
 
     // Extend the rulesets to apply a wider range of linting rules
     extends: [
-        'eslint-config-ironplate/node'
+        'eslint-config-ironplate/node.js'
     ],
 
     rules: {

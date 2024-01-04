@@ -1,6 +1,6 @@
 const coreConfig = require('./_core.js');
 
-const thisConfig = JSON.parse(JSON.stringify(coreConfig));
+const thisConfig = structuredClone(coreConfig);
 
 thisConfig.env = {
     ...thisConfig.env,

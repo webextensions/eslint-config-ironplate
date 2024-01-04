@@ -9,7 +9,7 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "@stylistic/eslint-plugin": "^1.5.0",
+        "@stylistic/eslint-plugin": "^1.5.3",
         "eslint-config-ironplate": "file:../../"
     }
 }
