@@ -16,19 +16,33 @@ In `.eslintrc` file, use it like one of the following combinations:
 OR
 
 {
-    "extends": [ "eslint-config-ironplate/frontend-react" ]
+    "extends": [ "eslint-config-ironplate/node.js" ]
 }
 
 OR
 
 {
-    "extends": [ "eslint-config-ironplate/node" ]
+    "extends": [ "eslint-config-ironplate/react.js" ]
 }
 
 OR
 
 {
-    "extends": [ "eslint-config-ironplate/node-typescript" ],
+    "extends": [ "eslint-config-ironplate/typescript.js" ],
+    "parser": "@typescript-eslint/parser"
+}
+
+OR
+
+{
+    "extends": [ "eslint-config-ironplate/node-typescript.js" ],
+    "parser": "@typescript-eslint/parser"
+}
+
+OR
+
+{
+    "extends": [ "eslint-config-ironplate/react-typescript.js" ],
     "parser": "@typescript-eslint/parser"
 }
 
