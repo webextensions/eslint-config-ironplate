@@ -12,7 +12,7 @@
 // TODO:
 //     Create "eslint-config-ironplate/base.js" which doesn't use any plugins
 
-const stylistic = require('@stylistic/eslint-plugin-js');
+const stylistic = require('@stylistic/eslint-plugin');
 
 module.exports = {
     // http://eslint.org/docs/user-guide/configuring.html
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     "plugins": [
-        "@stylistic/eslint-plugin-js",
+        "@stylistic/eslint-plugin",
         "eslint-plugin-import",      // https://www.npmjs.com/package/eslint-plugin-import
         "eslint-plugin-node",        // https://www.npmjs.com/package/eslint-plugin-node
         "eslint-plugin-unicorn",     // https://www.npmjs.com/package/eslint-plugin-unicorn
