@@ -1,64 +1,73 @@
+const globals = require('globals');
+
+const pluginReact = require('eslint-plugin-react');
+const pluginReactHooks = require('eslint-plugin-react-hooks');
+
 const coreConfig = require('./_core.js');
 
-const thisConfig = structuredClone(coreConfig);
+let thisConfig = coreConfig;
 
-thisConfig.env = {
-    ...thisConfig.env,
-    "browser": true
-};
+thisConfig = [
+    ...thisConfig,
 
-thisConfig.plugins = [
-    ...thisConfig.plugins,
-    "react",      // https://www.npmjs.com/package/eslint-plugin-react
-    "react-hooks" // https://www.npmjs.com/package/eslint-plugin-react-hooks
-];
+    {
+        plugins: {
+            react: pluginReact,
+            'react-hooks': pluginReactHooks
+        },
 
-thisConfig.extends = [
-    ...thisConfig.extends,
-    "plugin:react/recommended"
-];
+        languageOptions: {
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true
+                }
+            },
 
-// http://eslint.org/docs/user-guide/migrating-to-2.0.0#language-options
-thisConfig.parserOptions = {
-    ...thisConfig.parserOptions,
-    "ecmaFeatures": {
-        "jsx": true
-    }
-};
+            globals: {
+                ...globals.browser,
+                ...globals.jest
+            }
+        },
 
-thisConfig.settings = {
-    ...thisConfig.settings,
-    // https://github.com/yannickcr/eslint-plugin-react#configuration
-    "react": {
-        "version": "detect" // React version. "detect" automatically picks the version you have installed.
-                            // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-                            // default to latest and warns if missing
-                            // It will default to "detect" in the future
-    }
-};
+        settings: {
+            react: {
+                version: 'detect'
+            }
+        },
 
-thisConfig.rules = {
-    ...thisConfig.rules,
+        rules: {
+            ...pluginReact.configs.flat.recommended.rules,
+            ...pluginReactHooks.configs.recommended.rules,
 
-    // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
-    // https://eslint.style/rules
-    "@stylistic/jsx-indent": ["error", 4],
-    "@stylistic/jsx-indent-props": ["error", 4],
-    "@stylistic/jsx-one-expression-per-line": "off",
-    "@stylistic/jsx-tag-spacing": "off",
-    "@stylistic/jsx-wrap-multilines": "off",
+            "import/extensions": [
+                "error",
+                "never",
+                {
+                    ignorePackages: true,
+                    pattern: {
+                        "js": "always",
+                        "jsx": "always",
+                        "ts": "never",
+                        "tsx": "never"
+                    }
+                }
+            ],
 
-    // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
-    "react/self-closing-comp": [
-        "error",
-        {
-            "component": true,
-            "html": false
+            "react/prop-types": ["error"],
+
+            // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
+            "react/self-closing-comp": [
+                "error",
+                {
+                    "component": true,
+                    "html": false
+                }
+            ],
+
+            "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
+            "react-hooks/exhaustive-deps": "warn"  // Checks effect dependencies
         }
-    ],
+    }
+];
 
-    "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
-    "react-hooks/exhaustive-deps": "warn"  // Checks effect dependencies
-};
-
-module.exports = thisConfig;
+module.exports = [...thisConfig];

@@ -1,14 +1,27 @@
-const coreConfig = require('./typescript.js');
+const nodeConfig = require('./node.js');
+const typeScriptConfig = require('./typescript.js');
 
-const thisConfig = structuredClone(coreConfig);
+const thisConfig = [
+    ...nodeConfig,
+    ...typeScriptConfig,
 
-// NOTE: When using this config, set this in config manually
-// thisConfig.parser = "@typescript-eslint/parser";
-
-thisConfig.env = {
-    ...thisConfig.env,
-    "commonjs": true,
-    "node": true
-};
+    {
+        rules: {
+            "import/extensions": [
+                "error",
+                "never",
+                {
+                    ignorePackages: true,
+                    pattern: {
+                        "js": "always",
+                        "json": "always",
+                        "ts": "never",
+                        "tsx": "never"
+                    }
+                }
+            ]
+        }
+    }
+];
 
 module.exports = thisConfig;

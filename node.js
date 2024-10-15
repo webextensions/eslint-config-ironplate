@@ -1,11 +1,20 @@
+const globals = require('globals');
+
 const coreConfig = require('./_core.js');
 
-const thisConfig = structuredClone(coreConfig);
+let thisConfig = coreConfig;
 
-thisConfig.env = {
-    ...thisConfig.env,
-    "commonjs": true,
-    "node": true
-};
+thisConfig = [
+    ...thisConfig,
 
-module.exports = thisConfig;
+    {
+        languageOptions: {
+            globals: {
+                ...globals.commonjs,
+                ...globals.node
+            }
+        }
+    }
+];
+
+module.exports = [...thisConfig];
