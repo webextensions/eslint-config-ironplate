@@ -11,6 +11,7 @@ thisConfig = [
         languageOptions: {
             globals: {
                 ...globals.commonjs,
+                ...globals.jest,
                 ...globals.node
             }
         }
