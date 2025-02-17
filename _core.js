@@ -66,6 +66,9 @@ module.exports = [
 
             "require-await": "error",
 
+            "no-throw-literal": "error",
+            "prefer-promise-reject-errors": "error",
+
             // TODO: FIXME: Move these rules to `react.js` configuration file. In an attempt to do that, somehow it
             //              didn't get applied properly and lead to some indentation related ESLint errors.
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
