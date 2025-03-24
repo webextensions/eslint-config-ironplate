@@ -8,6 +8,9 @@
     },
     "author": "",
     "license": "MIT",
+    "devDependencies": {
+        "eslint": "^9.23.0"
+    },
     "dependencies": {
         "@stylistic/eslint-plugin": "*",
         "eslint-config-ironplate": "file:../../"
