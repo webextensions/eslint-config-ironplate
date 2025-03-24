@@ -17,7 +17,7 @@ const eslintJs = require('@eslint/js');
 const pluginStylistic = require('@stylistic/eslint-plugin');
 const pluginImport = require('eslint-plugin-import');
 const pluginN = require('eslint-plugin-n');
-const pluginUnicorn = require('eslint-plugin-unicorn');
+const pluginUnicorn = require('eslint-plugin-unicorn').default;
 
 module.exports = [
     {
@@ -244,20 +244,19 @@ module.exports = [
             ],
             "unicorn/new-for-builtins": "error",
             "unicorn/no-abusive-eslint-disable": "error",
-            "unicorn/no-array-instanceof": "error",
+            "unicorn/no-instanceof-builtins": "error",
             "unicorn/no-console-spaces": "error",
             "unicorn/no-for-loop": "error",
             "unicorn/no-hex-escape": "error",
             "unicorn/no-new-buffer": "error",
             "unicorn/no-unreadable-array-destructuring": "error",
-            "unicorn/no-unsafe-regex": "error",
             "unicorn/no-unused-properties": "error",
             "unicorn/no-zero-fractions": "error",
             "unicorn/number-literal-case": "error",
             "unicorn/prefer-add-event-listener": "error",
-            "unicorn/prefer-event-key": "error",
-            "unicorn/prefer-flat-map": "error",
-            "unicorn/prefer-text-content": "error",
+            "unicorn/prefer-keyboard-event-key": "error",
+            "unicorn/prefer-array-flat-map": "error",
+            "unicorn/prefer-dom-node-text-content": "error",
             "unicorn/prefer-type-error": "error",
             "unicorn/regex-shorthand": "off",
             "unicorn/throw-new-error": "error",
