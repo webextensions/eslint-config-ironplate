@@ -193,12 +193,16 @@ module.exports = [
             "n/callback-return": [
                 "error",
                 [
-                    "callback",
-                    "done",
+                    "resolve",
+                    "reject",
+
+                    "next",
+                    "res.status",
                     "res.end",
                     "res.send",
-                    "res.status",
-                    "next"
+
+                    "callback",
+                    "done"
                 ]
             ],
 
