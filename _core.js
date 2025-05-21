@@ -17,6 +17,7 @@ const eslintJs = require('@eslint/js');
 const pluginStylistic = require('@stylistic/eslint-plugin');
 const pluginImport = require('eslint-plugin-import');
 const pluginN = require('eslint-plugin-n');
+const pluginPromise = require('eslint-plugin-promise');
 const pluginUnicorn = require('eslint-plugin-unicorn').default;
 
 module.exports = [
@@ -25,6 +26,7 @@ module.exports = [
             '@stylistic': pluginStylistic,
             import: pluginImport,
             n: pluginN,
+            promise: pluginPromise,
             unicorn: pluginUnicorn
         },
 
@@ -43,6 +45,7 @@ module.exports = [
             ...pluginStylistic.configs['recommended-flat'].rules, // https://eslint.style/rules
             ...pluginImport.flatConfigs.recommended.rules,
             ...pluginN.configs.recommended.rules,
+            ...pluginPromise.configs['flat/recommended'].rules,
             ...pluginUnicorn.configs['flat/recommended'].rules,
 
             "unicode-bom": ["error", "never"],
