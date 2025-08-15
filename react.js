@@ -64,8 +64,8 @@ thisConfig = [
                 }
             ],
 
-            "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
-            "react-hooks/exhaustive-deps": "warn"  // Checks effect dependencies
+            "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+            "react-hooks/rules-of-hooks": "error"  // Checks rules of hooks
         }
     }
 ];

@@ -48,29 +48,23 @@ module.exports = [
             ...pluginPromise.configs['flat/recommended'].rules,
             ...pluginUnicorn.configs['flat/recommended'].rules,
 
-            "unicode-bom": ["error", "never"],
-
+            "array-callback-return": ["error"],
             "id-denylist": ["error", "DO_NOT_COMMIT", "DO_NOT_UNCOMMENT"],
-
+            "no-alert": ["error"],
             "no-console": "off",
+            "no-constructor-return": ["error"],
+            "no-debugger": ["error"],
+            "no-sequences": ["error"],
             "no-shadow": "off",
+            "no-template-curly-in-string": ["error"],
+            "no-throw-literal": "error",
+            "no-unused-vars": "error",
             "no-var": [ "error" ],
             "prefer-const": [ "error" ],
-            "semi": "error",
-            "no-unused-vars": "error",
-
-            "no-alert": ["error"],
-            "no-debugger": ["error"],
-            "no-template-curly-in-string": ["error"],
-
-            "array-callback-return": ["error"],
-            "no-constructor-return": ["error"],
-            "no-sequences": ["error"],
-
-            "require-await": "error",
-
-            "no-throw-literal": "error",
             "prefer-promise-reject-errors": "error",
+            "require-await": "error",
+            "semi": "error",
+            "unicode-bom": ["error", "never"],
 
             // TODO: FIXME: Move these rules to `react.js` configuration file. In an attempt to do that, somehow it
             //              didn't get applied properly and lead to some indentation related ESLint errors.
@@ -168,30 +162,6 @@ module.exports = [
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
             "import/no-default-export": [ "error" ],
 
-            "n/hashbang": "off",
-            "n/no-extraneous-import": "off",
-            "n/no-extraneous-require": "off",
-            "n/no-unpublished-import": "off",
-            "n/no-unpublished-require": "off",
-
-            "n/no-unsupported-features/es-syntax": ["error", {
-                "version": ">=20",
-            }],
-
-            // TODO: Utilize this rule only inside Node.js environment
-            "n/no-unsupported-features/node-builtins": "off",
-            // "n/no-unsupported-features/node-builtins": ["error", {
-            //     "version": ">=20",
-            //     "ignores": []
-            // }],
-
-            // Rather than "n/no-missing-import", use "import/no-unresolved" / "import-x/no-unresolved"
-            // Ref: https://github.com/eslint-community/eslint-plugin-n/issues/349#issuecomment-2393189937
-            "n/no-missing-import": "off",
-
-            "n/no-missing-require": [ "error" ],
-            "n/no-deprecated-api": [ "error" ],
-
             // https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
             "n/callback-return": [
                 "error",
@@ -209,36 +179,40 @@ module.exports = [
                 ]
             ],
 
-            "unicorn/catch-error-name": "off",
-            "unicorn/empty-brace-spaces": "off",
-            "unicorn/explicit-length-check": "off",
-            "unicorn/import-style": "off",
-            "unicorn/no-array-push-push": "off",
-            "unicorn/no-await-expression-member": "off",
-            "unicorn/no-lonely-if": "off",
-            "unicorn/no-negated-condition": "off",
-            "unicorn/no-null": "off",
-            "unicorn/no-process-exit": "off",
-            "unicorn/no-this-assignment": "off",
-            "unicorn/no-typeof-undefined": "off",
-            "unicorn/no-useless-undefined": "off",
-            "unicorn/numeric-separators-style": "off",
-            "unicorn/prefer-global-this": "off",
-            "unicorn/prefer-module": "off",
-            "unicorn/prefer-node-protocol": "error",
-            "unicorn/prefer-optional-catch-binding": "off",
-            "unicorn/prefer-query-selector": "off",
-            "unicorn/prefer-regexp-test": "off",
-            "unicorn/prefer-switch": "off",
-            "unicorn/prefer-spread": "off",
-            "unicorn/prefer-ternary": "off",
-            "unicorn/prefer-top-level-await": "off",
-            "unicorn/prevent-abbreviations": "off",
+            "n/hashbang": "off",
+            "n/no-deprecated-api": [ "error" ],
+            "n/no-extraneous-import": "off",
+            "n/no-extraneous-require": "off",
 
+            // Rather than "n/no-missing-import", use "import/no-unresolved" / "import-x/no-unresolved"
+            // Ref: https://github.com/eslint-community/eslint-plugin-n/issues/349#issuecomment-2393189937
+            "n/no-missing-import": "off",
+
+            "n/no-missing-require": [ "error" ],
+            "n/no-unpublished-import": "off",
+            "n/no-unpublished-require": "off",
+
+            "n/no-unsupported-features/es-syntax": ["error", {
+                "version": ">=20"
+            }],
+
+            // TODO: Utilize this rule only inside Node.js environment
+            "n/no-unsupported-features/node-builtins": "off",
+            // "n/no-unsupported-features/node-builtins": ["error", {
+            //     "version": ">=20",
+            //     "ignores": []
+            // }],
+
+
+
+            "unicorn/catch-error-name": "off",
+            "unicorn/consistent-function-scoping": "off",
             "unicorn/custom-error-definition": "error",
+            "unicorn/empty-brace-spaces": "off",
             "unicorn/error-message": "error",
             "unicorn/escape-case": "error",
             "unicorn/expiring-todo-comments": "error",
+            "unicorn/explicit-length-check": "off",
             "unicorn/filename-case": [
                 "error",
                 {
@@ -249,27 +223,47 @@ module.exports = [
                     }
                 }
             ],
+            "unicorn/import-style": "off",
             "unicorn/new-for-builtins": "error",
             "unicorn/no-abusive-eslint-disable": "error",
-            "unicorn/no-instanceof-builtins": "error",
+            "unicorn/no-array-push-push": "off",
+            "unicorn/no-await-expression-member": "off",
             "unicorn/no-console-spaces": "error",
+            "unicorn/no-fn-reference-in-iterator": "off",
             "unicorn/no-for-loop": "error",
             "unicorn/no-hex-escape": "error",
+            "unicorn/no-instanceof-builtins": "error",
+            "unicorn/no-lonely-if": "off",
+            "unicorn/no-negated-condition": "off",
             "unicorn/no-new-buffer": "error",
+            "unicorn/no-null": "off",
+            "unicorn/no-process-exit": "off",
+            "unicorn/no-this-assignment": "off",
+            "unicorn/no-typeof-undefined": "off",
             "unicorn/no-unreadable-array-destructuring": "error",
             "unicorn/no-unused-properties": "error",
+            "unicorn/no-useless-undefined": "off",
             "unicorn/no-zero-fractions": "error",
             "unicorn/number-literal-case": "error",
+            "unicorn/numeric-separators-style": "off",
             "unicorn/prefer-add-event-listener": "error",
-            "unicorn/prefer-keyboard-event-key": "error",
             "unicorn/prefer-array-flat-map": "error",
             "unicorn/prefer-dom-node-text-content": "error",
+            "unicorn/prefer-global-this": "off",
+            "unicorn/prefer-keyboard-event-key": "error",
+            "unicorn/prefer-module": "off",
+            "unicorn/prefer-node-protocol": "error",
+            "unicorn/prefer-optional-catch-binding": "off",
+            "unicorn/prefer-query-selector": "off",
+            "unicorn/prefer-regexp-test": "off",
+            "unicorn/prefer-spread": "off",
+            "unicorn/prefer-switch": "off",
+            "unicorn/prefer-ternary": "off",
+            "unicorn/prefer-top-level-await": "off",
             "unicorn/prefer-type-error": "error",
+            "unicorn/prevent-abbreviations": "off",
             "unicorn/regex-shorthand": "off",
             "unicorn/throw-new-error": "error",
-
-            "unicorn/no-fn-reference-in-iterator": "off",
-            "unicorn/consistent-function-scoping": "off"
         }
     }
 ];
