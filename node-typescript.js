@@ -13,10 +13,11 @@ const thisConfig = [
                 {
                     ignorePackages: true,
                     pattern: {
+                        "cjs": "always",
                         "js": "always",
                         "json": "always",
-                        "ts": "never",
-                        "tsx": "never"
+                        "mjs": "always",
+                        "ts": "always"
                     }
                 }
             ]

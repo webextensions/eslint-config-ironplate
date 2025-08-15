@@ -45,10 +45,11 @@ thisConfig = [
                 {
                     ignorePackages: true,
                     pattern: {
+                        "cjs": "always",
                         "js": "always",
+                        "json": "always",
                         "jsx": "always",
-                        "ts": "never",
-                        "tsx": "never"
+                        "mjs": "always"
                     }
                 }
             ],
