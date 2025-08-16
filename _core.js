@@ -49,19 +49,24 @@ module.exports = [
             ...pluginUnicorn.configs['flat/recommended'].rules,
 
             "array-callback-return": ["error"],
+            "eqeqeq": "error",
             "id-denylist": ["error", "DO_NOT_COMMIT", "DO_NOT_UNCOMMENT"],
             "no-alert": ["error"],
+            "no-bitwise": "error",
             "no-console": "off",
             "no-constructor-return": ["error"],
             "no-debugger": ["error"],
+            "no-promise-executor-return": "error",
             "no-sequences": ["error"],
             "no-shadow": "off",
             "no-template-curly-in-string": ["error"],
             "no-throw-literal": "error",
             "no-unused-vars": "error",
+            "no-use-before-define": ["error", { "functions": false, "classes": true }],
             "no-var": [ "error" ],
             "prefer-const": [ "error" ],
             "prefer-promise-reject-errors": "error",
+            "prefer-regex-literals": "error",
             "require-await": "error",
             "semi": "error",
             "unicode-bom": ["error", "never"],
@@ -90,6 +95,9 @@ module.exports = [
                 }
             ],
             "@stylistic/eol-last": ["error", "always"],
+            "@stylistic/function-call-argument-newline": ["error", "consistent"],
+            "@stylistic/function-paren-newline": ["error", "consistent"],
+            "@stylistic/implicit-arrow-linebreak": ["error", "beside"],
             "@stylistic/indent": [
                 "error",
                 4,
@@ -103,11 +111,32 @@ module.exports = [
             "@stylistic/keyword-spacing": ["error"],
             "@stylistic/linebreak-style": [ "error", "unix" ],
             "@stylistic/max-statements-per-line": "off",
-            "@stylistic/no-multi-spaces": "off",
+            "@stylistic/no-extra-semi": "error",
+            "@stylistic/no-mixed-operators": ["error", {"allowSamePrecedence": false}],
+            "@stylistic/no-multi-spaces": [
+                "error",
+                {
+                    "ignoreEOLComments": true,
+                    "exceptions": {
+                        "Property": true,
+                        "VariableDeclarator": true
+                    }
+                }
+            ],
+            "@stylistic/no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1  }],
             "@stylistic/no-trailing-spaces": "error",
+            "@stylistic/object-curly-newline": ["error", { "consistent": true }],
             "@stylistic/object-curly-spacing": ["error", "always"],
             "@stylistic/one-var-declaration-per-line": ["error", "always"],
             "@stylistic/operator-linebreak": ["error", "after"],
+            "@stylistic/quote-props": [
+                "error",
+                "consistent-as-needed",
+                {
+                    "keywords": true,
+                    "numbers": true
+                }
+            ],
             // https://eslint.style/rules/js/quotes
             "@stylistic/quotes": [
                 "warn",
@@ -134,6 +163,20 @@ module.exports = [
                 }
             ],
             "@stylistic/space-in-parens": "off",
+            "@stylistic/spaced-comment": [
+                "error",
+                "always",
+                {
+                    "line": {
+                        "exceptions": ["/"]
+                    },
+                    "block": {
+                        "markers": ["!"],
+                        "exceptions": ["*"],
+                        "balanced": true
+                    }
+                }
+            ],
 
             // // TODO: Try to identify a well maintained package which can provide some of the rules provided by
             // // eslint-plugin-filenames (https://www.npmjs.com/package/eslint-plugin-filenames).
