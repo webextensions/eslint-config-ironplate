@@ -67,6 +67,9 @@ thisConfig = [
             "no-unused-vars": "off",
             "@typescript-eslint/no-unused-vars": ["error"],
 
+            "no-use-before-define": "off",
+            "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": true }],
+
             "@typescript-eslint/ban-ts-comment": "off",
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-require-imports": "off",
