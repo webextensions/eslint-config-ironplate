@@ -25,7 +25,7 @@ module.exports = [
         },
 
         rules: {
-            ...pluginStylistic.configs['recommended-flat'].rules, // https://eslint.style/rules
+            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
 
             '@stylistic/comma-dangle': ['error', 'never'],
             '@stylistic/semi': ['error', 'always'],

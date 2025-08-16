@@ -42,7 +42,7 @@ module.exports = [
 
         rules: {
             ...eslintJs.configs.recommended.rules,
-            ...pluginStylistic.configs['recommended-flat'].rules, // https://eslint.style/rules
+            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
             ...pluginImport.flatConfigs.recommended.rules,
             ...pluginN.configs.recommended.rules,
             ...pluginPromise.configs['flat/recommended'].rules,
@@ -76,7 +76,6 @@ module.exports = [
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
             // https://eslint.style/rules
             "@stylistic/jsx-curly-brace-presence": "off",
-            "@stylistic/jsx-indent": ["error", 4],
             "@stylistic/jsx-indent-props": ["error", 4],
             "@stylistic/jsx-one-expression-per-line": "off",
             "@stylistic/jsx-tag-spacing": "off",
