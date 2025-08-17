@@ -112,16 +112,20 @@ module.exports = [
             "@stylistic/max-statements-per-line": "off",
             "@stylistic/no-extra-semi": "error",
             "@stylistic/no-mixed-operators": ["error", {"allowSamePrecedence": false}],
-            "@stylistic/no-multi-spaces": [
-                "error",
-                {
-                    "ignoreEOLComments": true,
-                    "exceptions": {
-                        "Property": true,
-                        "VariableDeclarator": true
-                    }
-                }
-            ],
+
+            // "@stylistic/no-multi-spaces": [
+            //     "error",
+            //     {
+            //         "ignoreEOLComments": true,
+            //         "exceptions": {
+            //             // "BinaryExpression": true,
+            //             "Property": true,
+            //             "VariableDeclarator": true
+            //         }
+            //     }
+            // ],
+            "@stylistic/no-multi-spaces": "off",
+
             "@stylistic/no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1  }],
             "@stylistic/no-trailing-spaces": "error",
             "@stylistic/object-curly-newline": ["error", { "consistent": true }],
@@ -141,7 +145,7 @@ module.exports = [
                 "warn",
                 "single",
                 {
-                    "allowTemplateLiterals": true,
+                    "allowTemplateLiterals": "avoidEscape",
                     "avoidEscape": true
                 }
             ],
@@ -269,6 +273,7 @@ module.exports = [
             "unicorn/new-for-builtins": "error",
             "unicorn/no-abusive-eslint-disable": "error",
             "unicorn/no-array-push-push": "off",
+            "unicorn/no-array-reverse": "off",
             "unicorn/no-await-expression-member": "off",
             "unicorn/no-console-spaces": "error",
             "unicorn/no-fn-reference-in-iterator": "off",
@@ -298,6 +303,7 @@ module.exports = [
             "unicorn/prefer-optional-catch-binding": "off",
             "unicorn/prefer-query-selector": "off",
             "unicorn/prefer-regexp-test": "off",
+            "unicorn/prefer-single-call": "off",
             "unicorn/prefer-spread": "off",
             "unicorn/prefer-switch": "off",
             "unicorn/prefer-ternary": "off",
