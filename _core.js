@@ -24,8 +24,7 @@ module.exports = [
     {
         plugins: {
             '@stylistic': pluginStylistic,
-            import: pluginImport,
-            n: pluginN
+            import: pluginImport
         },
 
         languageOptions: {
@@ -42,7 +41,6 @@ module.exports = [
             ...eslintJs.configs.recommended.rules,
             ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
             ...pluginImport.flatConfigs.recommended.rules,
-            ...pluginN.configs.recommended.rules,
 
             "array-callback-return": ["error"],
             "eqeqeq": "error",
@@ -202,7 +200,16 @@ module.exports = [
             "import/exports-last": [ "error" ],
 
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
-            "import/no-default-export": [ "error" ],
+            "import/no-default-export": [ "error" ]
+        }
+    },
+
+    {
+        plugins: {
+            n: pluginN
+        },
+        rules: {
+            ...pluginN.configs.recommended.rules,
 
             // https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
             "n/callback-return": [
