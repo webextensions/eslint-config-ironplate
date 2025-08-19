@@ -2,6 +2,7 @@ const globals = require('globals');
 
 const pluginReact = require('eslint-plugin-react');
 const pluginReactHooks = require('eslint-plugin-react-hooks');
+const pluginReactRefresh = require('eslint-plugin-react-refresh');
 
 const coreConfig = require('./_core.js');
 
@@ -13,7 +14,8 @@ thisConfig = [
     {
         plugins: {
             react: pluginReact,
-            'react-hooks': pluginReactHooks
+            'react-hooks': pluginReactHooks,
+            'react-refresh': pluginReactRefresh
         },
 
         languageOptions: {
@@ -66,7 +68,9 @@ thisConfig = [
             ],
 
             "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-            "react-hooks/rules-of-hooks": "error"  // Checks rules of hooks
+            "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
+
+            "react-refresh/only-export-components": "error"
         }
     }
 ];
