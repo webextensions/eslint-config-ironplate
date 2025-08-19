@@ -1,5 +1,6 @@
 const globals = require('globals');
 
+const pluginEslintReact = require('@eslint-react/eslint-plugin');
 const pluginReact = require('eslint-plugin-react');
 const pluginReactHooks = require('eslint-plugin-react-hooks');
 const pluginReactRefresh = require('eslint-plugin-react-refresh');
@@ -71,6 +72,15 @@ thisConfig = [
             "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
 
             "react-refresh/only-export-components": "error"
+        }
+    },
+
+    // Include the @eslint-react/eslint-plugin recommended config (which also contains the plugin definitions)
+    {
+        ...pluginEslintReact.configs.recommended,
+        rules: {
+            ...pluginEslintReact.configs.recommended.rules,
+            '@eslint-react/no-prop-types': 'off'
         }
     }
 ];

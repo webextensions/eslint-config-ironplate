@@ -13,6 +13,7 @@
     },
     "peerDependencies": {
         "@eslint/js": "*",
+        "@eslint-react/eslint-plugin": "*",
         "@stylistic/eslint-plugin": "*",
         "@typescript-eslint/eslint-plugin": "*",
         "@typescript-eslint/parser": "*",
