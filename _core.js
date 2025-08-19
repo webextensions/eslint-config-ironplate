@@ -26,8 +26,7 @@ module.exports = [
             '@stylistic': pluginStylistic,
             import: pluginImport,
             n: pluginN,
-            promise: pluginPromise,
-            unicorn: pluginUnicorn
+            promise: pluginPromise
         },
 
         languageOptions: {
@@ -46,7 +45,6 @@ module.exports = [
             ...pluginImport.flatConfigs.recommended.rules,
             ...pluginN.configs.recommended.rules,
             ...pluginPromise.configs['flat/recommended'].rules,
-            ...pluginUnicorn.configs['flat/recommended'].rules,
 
             "array-callback-return": ["error"],
             "eqeqeq": "error",
@@ -243,13 +241,19 @@ module.exports = [
             }],
 
             // TODO: Utilize this rule only inside Node.js environment
-            "n/no-unsupported-features/node-builtins": "off",
+            "n/no-unsupported-features/node-builtins": "off"
             // "n/no-unsupported-features/node-builtins": ["error", {
             //     "version": ">=20",
             //     "ignores": []
-            // }],
-
-
+            // }]
+        }
+    },
+    {
+        plugins: {
+            unicorn: pluginUnicorn
+        },
+        rules: {
+            ...pluginUnicorn.configs['flat/recommended'].rules,
 
             "unicorn/catch-error-name": "off",
             "unicorn/consistent-function-scoping": "off",
@@ -311,7 +315,7 @@ module.exports = [
             "unicorn/prefer-type-error": "error",
             "unicorn/prevent-abbreviations": "off",
             "unicorn/regex-shorthand": "off",
-            "unicorn/throw-new-error": "error",
+            "unicorn/throw-new-error": "error"
         }
     }
 ];
