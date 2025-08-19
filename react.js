@@ -1,5 +1,6 @@
 const globals = require('globals');
 
+const pluginJsxA11y = require('eslint-plugin-jsx-a11y');
 const pluginEslintReact = require('@eslint-react/eslint-plugin');
 const pluginReact = require('eslint-plugin-react');
 const pluginReactHooks = require('eslint-plugin-react-hooks');
@@ -11,6 +12,15 @@ let thisConfig = coreConfig;
 
 thisConfig = [
     ...thisConfig,
+
+    {
+        plugins: {
+            'jsx-a11y': pluginJsxA11y
+        },
+        rules: {
+            ...pluginJsxA11y.configs.recommended.rules
+        }
+    },
 
     {
         plugins: {
