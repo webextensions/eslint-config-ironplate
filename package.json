@@ -12,6 +12,7 @@
         "test": "pwd && npm run --prefix ./test/js test"
     },
     "peerDependencies": {
+        "@eslint/js": "*",
         "@stylistic/eslint-plugin": "*",
         "@typescript-eslint/eslint-plugin": "*",
         "@typescript-eslint/parser": "*",
