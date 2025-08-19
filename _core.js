@@ -25,8 +25,7 @@ module.exports = [
         plugins: {
             '@stylistic': pluginStylistic,
             import: pluginImport,
-            n: pluginN,
-            promise: pluginPromise
+            n: pluginN
         },
 
         languageOptions: {
@@ -44,7 +43,6 @@ module.exports = [
             ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
             ...pluginImport.flatConfigs.recommended.rules,
             ...pluginN.configs.recommended.rules,
-            ...pluginPromise.configs['flat/recommended'].rules,
 
             "array-callback-return": ["error"],
             "eqeqeq": "error",
@@ -248,6 +246,16 @@ module.exports = [
             // }]
         }
     },
+
+    {
+        plugins: {
+            promise: pluginPromise
+        },
+        rules: {
+            ...pluginPromise.configs['flat/recommended'].rules
+        }
+    },
+
     {
         plugins: {
             unicorn: pluginUnicorn
