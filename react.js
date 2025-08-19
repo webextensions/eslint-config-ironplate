@@ -39,29 +39,29 @@ thisConfig = [
         rules: {
             ...pluginReact.configs.flat.recommended.rules,
 
-            "import/extensions": [
-                "error",
-                "never",
+            'import/extensions': [
+                'error',
+                'never',
                 {
                     ignorePackages: true,
                     pattern: {
-                        "cjs": "always",
-                        "js": "always",
-                        "json": "always",
-                        "jsx": "always",
-                        "mjs": "always"
+                        'cjs': 'always',
+                        'js': 'always',
+                        'json': 'always',
+                        'jsx': 'always',
+                        'mjs': 'always'
                     }
                 }
             ],
 
-            "react/prop-types": ["error"],
+            'react/prop-types': ['error'],
 
             // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
-            "react/self-closing-comp": [
-                "error",
+            'react/self-closing-comp': [
+                'error',
                 {
-                    "component": true,
-                    "html": false
+                    'component': true,
+                    'html': false
                 }
             ]
         }

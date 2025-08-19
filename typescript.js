@@ -55,26 +55,26 @@ thisConfig = [
 
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
             // https://eslint.style/rules
-            "@stylistic/member-delimiter-style": [
-                "error",
+            '@stylistic/member-delimiter-style': [
+                'error',
                 {
-                    "singleline": { "delimiter": "semi", "requireLast": false },
-                    "multiline":  { "delimiter": "semi", "requireLast": false }
+                    'singleline': { 'delimiter': 'semi', 'requireLast': false },
+                    'multiline':  { 'delimiter': 'semi', 'requireLast': false }
                 }
             ],
-            "@stylistic/type-annotation-spacing": ["error", { "before": false, "after": true }],
+            '@stylistic/type-annotation-spacing': ['error', { 'before': false, 'after': true }],
 
-            "no-unused-vars": "off",
-            "@typescript-eslint/no-unused-vars": ["error"],
+            'no-unused-vars': 'off',
+            '@typescript-eslint/no-unused-vars': ['error'],
 
-            "no-use-before-define": "off",
-            "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": true }],
+            'no-use-before-define': 'off',
+            '@typescript-eslint/no-use-before-define': ['error', { 'functions': false, 'classes': true }],
 
-            "@typescript-eslint/ban-ts-comment": "off",
-            "@typescript-eslint/no-explicit-any": "off",
-            "@typescript-eslint/no-require-imports": "off",
-            "@typescript-eslint/no-this-alias": "off",
-            "@typescript-eslint/no-var-requires": ["off"]
+            '@typescript-eslint/ban-ts-comment': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-require-imports': 'off',
+            '@typescript-eslint/no-this-alias': 'off',
+            '@typescript-eslint/no-var-requires': ['off']
         }
     }
 ];

@@ -7,21 +7,21 @@ const thisConfig = [
 
     {
         rules: {
-            "import/extensions": [
-                "error",
-                "never",
+            'import/extensions': [
+                'error',
+                'never',
                 {
                     ignorePackages: true,
                     pattern: {
-                        "cjs": "always",
-                        "cts": "always",
-                        "js": "always",
-                        "json": "always",
-                        "jsx": "always",
-                        "mjs": "always",
-                        "mts": "always",
-                        "ts": "always",
-                        "tsx": "always"
+                        'cjs': 'always',
+                        'cts': 'always',
+                        'js': 'always',
+                        'json': 'always',
+                        'jsx': 'always',
+                        'mjs': 'always',
+                        'mts': 'always',
+                        'ts': 'always',
+                        'tsx': 'always'
                     }
                 }
             ]
@@ -30,6 +30,6 @@ const thisConfig = [
 ];
 
 // NOTE: When using this config, set this in config manually
-// thisConfig.parser = "@typescript-eslint/parser";
+// thisConfig.parser = '@typescript-eslint/parser';
 
 module.exports = [...thisConfig];
