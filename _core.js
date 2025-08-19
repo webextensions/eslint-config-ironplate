@@ -23,8 +23,7 @@ const pluginUnicorn = require('eslint-plugin-unicorn').default;
 module.exports = [
     {
         plugins: {
-            '@stylistic': pluginStylistic,
-            import: pluginImport
+            '@stylistic': pluginStylistic
         },
 
         languageOptions: {
@@ -40,7 +39,6 @@ module.exports = [
         rules: {
             ...eslintJs.configs.recommended.rules,
             ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
-            ...pluginImport.flatConfigs.recommended.rules,
 
             "array-callback-return": ["error"],
             "eqeqeq": "error",
@@ -188,7 +186,16 @@ module.exports = [
             //         "kebab"
             //     ]
             // ],
-            // "filenames/no-index": [ "error" ],
+            // "filenames/no-index": [ "error" ]
+        }
+    },
+
+    {
+        plugins: {
+            import: pluginImport
+        },
+        rules: {
+            ...pluginImport.flatConfigs.recommended.rules,
 
             "import/no-unresolved": ["error", {
                 "caseSensitive": true,
