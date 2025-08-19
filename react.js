@@ -14,8 +14,7 @@ thisConfig = [
 
     {
         plugins: {
-            react: pluginReact,
-            'react-hooks': pluginReactHooks
+            react: pluginReact
         },
 
         languageOptions: {
@@ -39,7 +38,6 @@ thisConfig = [
 
         rules: {
             ...pluginReact.configs.flat.recommended.rules,
-            ...pluginReactHooks.configs.recommended.rules,
 
             "import/extensions": [
                 "error",
@@ -65,10 +63,19 @@ thisConfig = [
                     "component": true,
                     "html": false
                 }
-            ],
+            ]
+        }
+    },
 
-            "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-            "react-hooks/rules-of-hooks": "error"  // Checks rules of hooks
+    {
+        plugins: {
+            'react-hooks': pluginReactHooks
+        },
+        rules: {
+            ...pluginReactHooks.configs.recommended.rules,
+
+            'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+            'react-hooks/rules-of-hooks': 'error'  // Checks rules of hooks
         }
     },
 
