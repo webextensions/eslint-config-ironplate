@@ -15,8 +15,7 @@ thisConfig = [
     {
         plugins: {
             react: pluginReact,
-            'react-hooks': pluginReactHooks,
-            'react-refresh': pluginReactRefresh
+            'react-hooks': pluginReactHooks
         },
 
         languageOptions: {
@@ -69,9 +68,16 @@ thisConfig = [
             ],
 
             "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-            "react-hooks/rules-of-hooks": "error", // Checks rules of hooks
+            "react-hooks/rules-of-hooks": "error"  // Checks rules of hooks
+        }
+    },
 
-            "react-refresh/only-export-components": "error"
+    {
+        plugins: {
+            'react-refresh': pluginReactRefresh
+        },
+        rules: {
+            'react-refresh/only-export-components': 'error'
         }
     },
 
