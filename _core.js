@@ -23,7 +23,6 @@ const pluginUnicorn = require('eslint-plugin-unicorn').default;
 module.exports = [
     {
         plugins: {
-            '@stylistic': pluginStylistic
         },
 
         languageOptions: {
@@ -38,7 +37,6 @@ module.exports = [
 
         rules: {
             ...eslintJs.configs.recommended.rules,
-            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
 
             "array-callback-return": ["error"],
             "eqeqeq": "error",
@@ -61,7 +59,32 @@ module.exports = [
             "prefer-regex-literals": "error",
             "require-await": "error",
             "semi": "error",
-            "unicode-bom": ["error", "never"],
+            "unicode-bom": ["error", "never"]
+
+            // // TODO: Try to identify a well maintained package which can provide some of the rules provided by
+            // // eslint-plugin-filenames (https://www.npmjs.com/package/eslint-plugin-filenames).
+            // // Ref:
+            // //     * No response at issue about asking for support: https://github.com/selaux/eslint-plugin-filenames/issues/54
+            // //     * Can try switching to https://github.com/kavsingh/eslint-plugin-filenames/tree/eslint-9
+            // //     * Can try if https://www.npmjs.com/package/eslint-plugin-project-structure helps
+            // "filenames/match-exported": [
+            //     "error",
+            //     [
+            //         null,
+            //         "kebab"
+            //     ]
+            // ],
+            // "filenames/no-index": [ "error" ]
+        }
+    },
+
+    {
+        plugins: {
+            '@stylistic': pluginStylistic
+        },
+
+        rules: {
+            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
 
             // TODO: FIXME: Move these rules to `react.js` configuration file. In an attempt to do that, somehow it
             //              didn't get applied properly and lead to some indentation related ESLint errors.
@@ -171,22 +194,7 @@ module.exports = [
                         "balanced": true
                     }
                 }
-            ],
-
-            // // TODO: Try to identify a well maintained package which can provide some of the rules provided by
-            // // eslint-plugin-filenames (https://www.npmjs.com/package/eslint-plugin-filenames).
-            // // Ref:
-            // //     * No response at issue about asking for support: https://github.com/selaux/eslint-plugin-filenames/issues/54
-            // //     * Can try switching to https://github.com/kavsingh/eslint-plugin-filenames/tree/eslint-9
-            // //     * Can try if https://www.npmjs.com/package/eslint-plugin-project-structure helps
-            // "filenames/match-exported": [
-            //     "error",
-            //     [
-            //         null,
-            //         "kebab"
-            //     ]
-            // ],
-            // "filenames/no-index": [ "error" ]
+            ]
         }
     },
 
