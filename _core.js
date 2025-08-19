@@ -33,7 +33,8 @@ module.exports = [
         },
 
         // https://eslint.org/docs/latest/use/configure/configuration-files#configuring-shared-settings
-        settings: {},
+        settings: {
+        },
 
         rules: {
             ...eslintJs.configs.recommended.rules,
@@ -200,7 +201,7 @@ module.exports = [
 
     {
         plugins: {
-            import: pluginImport
+            'import': pluginImport
         },
         rules: {
             ...pluginImport.flatConfigs.recommended.rules,
@@ -221,7 +222,7 @@ module.exports = [
 
     {
         plugins: {
-            n: pluginN
+            'n': pluginN
         },
         rules: {
             ...pluginN.configs.recommended.rules,
@@ -271,7 +272,7 @@ module.exports = [
 
     {
         plugins: {
-            promise: pluginPromise
+            'promise': pluginPromise
         },
         rules: {
             ...pluginPromise.configs['flat/recommended'].rules
@@ -280,7 +281,7 @@ module.exports = [
 
     {
         plugins: {
-            unicorn: pluginUnicorn
+            'unicorn': pluginUnicorn
         },
         rules: {
             ...pluginUnicorn.configs['flat/recommended'].rules,

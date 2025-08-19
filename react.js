@@ -14,7 +14,7 @@ thisConfig = [
 
     {
         plugins: {
-            react: pluginReact
+            'react': pluginReact
         },
 
         languageOptions: {
