@@ -14,6 +14,15 @@ thisConfig = [
     ...thisConfig,
 
     {
+        files: [
+            '**/*.cjs',
+            '**/*.js',
+            '**/*.jsx', // Include .jsx files as well for linting
+            '**/*.mjs'
+        ]
+    },
+
+    {
         plugins: {
             'jsx-a11y': pluginJsxA11y
         },
