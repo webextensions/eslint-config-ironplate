@@ -33,8 +33,8 @@ thisConfig = [
                 node: {
                     // https://github.com/import-js/eslint-plugin-import/blob/67cc79841fc823ad4af2532af2dc6704e4b3b03a/config/typescript.js
                     extensions: (function () {
-                        const typeScriptExtensions = ['.ts', '.cts', '.mts', '.tsx'];
-                        const allExtensions = [...typeScriptExtensions, '.js', '.jsx', '.mjs', '.cjs'];
+                        const typeScriptExtensions = ['.cts', '.mts', '.ts', '.tsx'];
+                        const allExtensions = [...typeScriptExtensions, '.cjs', '.js', '.jsx', '.mjs'];
 
                         return allExtensions;
                     })()
