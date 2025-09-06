@@ -93,6 +93,7 @@ thisConfig = [
                         'mjs': 'always',
                         'mts': 'always',
                         'ts': 'always'
+                    }
                 }
             ]
         }
