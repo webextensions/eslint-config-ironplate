@@ -28,20 +28,6 @@ thisConfig = [
             '@typescript-eslint': pluginTypescript
         },
 
-        settings: {
-            'import/resolver': {
-                node: {
-                    // https://github.com/import-js/eslint-plugin-import/blob/67cc79841fc823ad4af2532af2dc6704e4b3b03a/config/typescript.js
-                    extensions: (function () {
-                        const typeScriptExtensions = ['.cts', '.mts', '.ts', '.tsx'];
-                        const allExtensions = [...typeScriptExtensions, '.cjs', '.js', '.jsx', '.mjs'];
-
-                        return allExtensions;
-                    })()
-                }
-            }
-        },
-
         // TODO: Verify the validity/utility of the following note in the context of new flat config system
         // NOTE: In old config system, we were applying "plugin:@typescript-eslint/recommended" first and then applying
         //       `...thisConfig.extends` because otherwise, if specified later, at the time of writing that note (with
@@ -75,6 +61,40 @@ thisConfig = [
             '@typescript-eslint/no-require-imports': 'off',
             '@typescript-eslint/no-this-alias': 'off',
             '@typescript-eslint/no-var-requires': ['off']
+        }
+    },
+
+    {
+        settings: {
+            'import/resolver': {
+                node: {
+                    // https://github.com/import-js/eslint-plugin-import/blob/67cc79841fc823ad4af2532af2dc6704e4b3b03a/config/typescript.js
+                    extensions: (function () {
+                        const typeScriptExtensions = ['.cts', '.mts', '.ts', '.tsx'];
+                        const allExtensions = [...typeScriptExtensions, '.cjs', '.js', '.jsx', '.mjs'];
+
+                        return allExtensions;
+                    })()
+                }
+            }
+        },
+
+        rules: {
+            'import/extensions': [
+                'error',
+                'never',
+                {
+                    ignorePackages: true,
+                    pattern: {
+                        'cjs': 'always',
+                        'cts': 'always',
+                        'js': 'always',
+                        'json': 'always',
+                        'mjs': 'always',
+                        'mts': 'always',
+                        'ts': 'always'
+                }
+            ]
         }
     }
 ];

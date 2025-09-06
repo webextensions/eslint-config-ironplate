@@ -215,6 +215,19 @@ module.exports = [
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/exports-last.md
             'import/exports-last': [ 'error' ],
 
+            'import/extensions': [
+                'error',
+                'never',
+                {
+                    ignorePackages: true,
+                    pattern: {
+                        'js': 'always',
+                        'json': 'always',
+                        'mjs': 'always'
+                    }
+                }
+            ],
+
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
             'import/no-default-export': [ 'error' ]
         }

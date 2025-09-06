@@ -15,6 +15,24 @@ thisConfig = [
                 ...globals.node
             }
         }
+    },
+
+    {
+        rules: {
+            'import/extensions': [
+                'error',
+                'never',
+                {
+                    ignorePackages: true,
+                    pattern: {
+                        'cjs': 'always',
+                        'js': 'always',
+                        'json': 'always',
+                        'mjs': 'always'
+                    }
+                }
+            ]
+        }
     }
 ];
 
