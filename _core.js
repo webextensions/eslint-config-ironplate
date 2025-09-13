@@ -58,6 +58,7 @@ module.exports = [
             'prefer-const': [ 'error' ],
             'prefer-promise-reject-errors': 'error',
             'prefer-regex-literals': 'error',
+            'preserve-caught-error': 'error',
             'require-await': 'error',
             'semi': 'error',
             'unicode-bom': ['error', 'never']
