@@ -9,7 +9,7 @@
     "author": "",
     "license": "MIT",
     "devDependencies": {
-        "eslint": "^9.33.0"
+        "eslint": "^9.35.0"
     },
     "dependencies": {
         "@stylistic/eslint-plugin": "*",
