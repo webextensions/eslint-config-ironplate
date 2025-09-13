@@ -152,7 +152,6 @@ module.exports = [
                 'error',
                 'consistent-as-needed',
                 {
-                    'keywords': true,
                     'numbers': true
                 }
             ],
