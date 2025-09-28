@@ -3,7 +3,7 @@
     "version": "1.8.0",
     "description": "Shareable ESLint configuration",
     "engines": {
-        "node": ">=18"
+        "node": ">=20"
     },
     "main": "index.js",
     "scripts": {
