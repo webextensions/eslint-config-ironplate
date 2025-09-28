@@ -1,4 +1,4 @@
-const globals = require('globals');
+// const globals = require('globals');
 
 const coreConfig = require('./_core.js');
 
@@ -8,13 +8,13 @@ thisConfig = [
     ...thisConfig,
 
     {
-        languageOptions: {
-            globals: {
-                ...globals.browser,
-                ...globals.jest,
-                ...globals.node
-            }
-        }
+        // languageOptions: {
+        //     globals: {
+        //         ...globals.browser,
+        //         ...globals.jest,
+        //         ...globals.node
+        //     }
+        // }
     }
 ];
 

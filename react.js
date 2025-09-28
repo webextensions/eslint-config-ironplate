@@ -1,4 +1,4 @@
-const globals = require('globals');
+// const globals = require('globals');
 
 const pluginJsxA11y = require('eslint-plugin-jsx-a11y');
 const pluginEslintReact = require('@eslint-react/eslint-plugin');
@@ -41,12 +41,12 @@ thisConfig = [
                 ecmaFeatures: {
                     jsx: true
                 }
-            },
-
-            globals: {
-                ...globals.browser,
-                ...globals.jest
             }
+
+            // globals: {
+            //     ...globals.browser,
+            //     ...globals.jest
+            // }
         },
 
         settings: {

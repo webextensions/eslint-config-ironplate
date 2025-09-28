@@ -18,6 +18,7 @@ module.exports = [
     {
         languageOptions: {
             globals: {
+                ...globals.node,
                 ...globals.jquery
             }
         },

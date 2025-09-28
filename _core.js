@@ -25,12 +25,12 @@ module.exports = [
         plugins: {
         },
 
-        languageOptions: {
-            globals: {
-                Atomics: 'readonly',
-                SharedArrayBuffer: 'readonly'
-            }
-        },
+        // languageOptions: {
+        //     globals: {
+        //         Atomics: 'readonly',
+        //         SharedArrayBuffer: 'readonly'
+        //     }
+        // },
 
         // https://eslint.org/docs/latest/use/configure/configuration-files#configuring-shared-settings
         settings: {
