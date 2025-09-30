@@ -31,7 +31,7 @@ const thisConfig = [
 
     {
         plugins: {
-            'react': pluginReact
+            react: pluginReact
         },
 
         languageOptions: {
@@ -62,11 +62,11 @@ const thisConfig = [
                 {
                     ignorePackages: true,
                     pattern: {
-                        'cjs': 'always',
-                        'js': 'always',
-                        'json': 'always',
-                        'jsx': 'always',
-                        'mjs': 'always'
+                        cjs: 'always',
+                        js: 'always',
+                        json: 'always',
+                        jsx: 'always',
+                        mjs: 'always'
                     }
                 }
             ],
@@ -77,8 +77,8 @@ const thisConfig = [
             'react/self-closing-comp': [
                 'error',
                 {
-                    'component': true,
-                    'html': false
+                    component: true,
+                    html: false
                 }
             ]
         }

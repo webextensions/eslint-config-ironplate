@@ -42,17 +42,17 @@ const thisConfig = [
             '@stylistic/member-delimiter-style': [
                 'error',
                 {
-                    'singleline': { 'delimiter': 'semi', 'requireLast': false },
-                    'multiline':  { 'delimiter': 'semi', 'requireLast': false }
+                    singleline: { delimiter: 'semi', requireLast: false },
+                    multiline:  { delimiter: 'semi', requireLast: false }
                 }
             ],
-            '@stylistic/type-annotation-spacing': ['error', { 'before': false, 'after': true }],
+            '@stylistic/type-annotation-spacing': ['error', { before: false, after: true }],
 
             'no-unused-vars': 'off',
             '@typescript-eslint/no-unused-vars': ['error'],
 
             'no-use-before-define': 'off',
-            '@typescript-eslint/no-use-before-define': ['error', { 'functions': false, 'classes': true }],
+            '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: true }],
 
             '@typescript-eslint/ban-ts-comment': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
@@ -84,13 +84,13 @@ const thisConfig = [
                 {
                     ignorePackages: true,
                     pattern: {
-                        'cjs': 'always',
-                        'cts': 'always',
-                        'js': 'always',
-                        'json': 'always',
-                        'mjs': 'always',
-                        'mts': 'always',
-                        'ts': 'always'
+                        cjs: 'always',
+                        cts: 'always',
+                        js: 'always',
+                        json: 'always',
+                        mjs: 'always',
+                        mts: 'always',
+                        ts: 'always'
                     }
                 }
             ]

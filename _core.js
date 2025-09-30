@@ -53,9 +53,9 @@ const thisConfig = [
             'no-template-curly-in-string': ['error'],
             'no-throw-literal': 'error',
             'no-unused-vars': 'error',
-            'no-use-before-define': ['error', { 'functions': false, 'classes': true }],
-            'no-var': [ 'error' ],
-            'prefer-const': [ 'error' ],
+            'no-use-before-define': ['error', { functions: false, classes: true }],
+            'no-var': ['error'],
+            'prefer-const': ['error'],
             'prefer-promise-reject-errors': 'error',
             'prefer-regex-literals': 'error',
             'preserve-caught-error': 'error',
@@ -106,8 +106,8 @@ const thisConfig = [
             '@stylistic/comma-spacing': [
                 'error',
                 {
-                    'before': false,
-                    'after': true
+                    before: false,
+                    after: true
                 }
             ],
             '@stylistic/eol-last': ['error', 'always'],
@@ -118,17 +118,17 @@ const thisConfig = [
                 'error',
                 4,
                 {
-                    'SwitchCase': 1, // https://eslint.style/rules/js/indent#switchcase
-                    'ignoreComments': true // https://eslint.style/rules/js/indent#ignorecomments
+                    SwitchCase: 1, // https://eslint.style/rules/js/indent#switchcase
+                    ignoreComments: true // https://eslint.style/rules/js/indent#ignorecomments
                 }
             ],
             '@stylistic/indent-binary-ops': ['error', 0],
             '@stylistic/key-spacing': 'off',
             '@stylistic/keyword-spacing': ['error'],
-            '@stylistic/linebreak-style': [ 'error', 'unix' ],
+            '@stylistic/linebreak-style': ['error', 'unix'],
             '@stylistic/max-statements-per-line': 'off',
             '@stylistic/no-extra-semi': 'error',
-            '@stylistic/no-mixed-operators': ['error', {'allowSamePrecedence': false}],
+            '@stylistic/no-mixed-operators': ['error', { allowSamePrecedence: false }],
 
             // '@stylistic/no-multi-spaces': [
             //     'error',
@@ -143,9 +143,9 @@ const thisConfig = [
             // ],
             '@stylistic/no-multi-spaces': 'off',
 
-            '@stylistic/no-multiple-empty-lines': ['error', { 'max': 1, 'maxBOF': 0, 'maxEOF': 1  }],
+            '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
             '@stylistic/no-trailing-spaces': 'error',
-            '@stylistic/object-curly-newline': ['error', { 'consistent': true }],
+            '@stylistic/object-curly-newline': ['error', { consistent: true }],
             '@stylistic/object-curly-spacing': ['error', 'always'],
             '@stylistic/one-var-declaration-per-line': ['error', 'always'],
             '@stylistic/operator-linebreak': ['error', 'after'],
@@ -153,7 +153,7 @@ const thisConfig = [
                 'error',
                 'consistent-as-needed',
                 {
-                    'numbers': true
+                    numbers: true
                 }
             ],
             // https://eslint.style/rules/js/quotes
@@ -161,24 +161,24 @@ const thisConfig = [
                 'warn',
                 'single',
                 {
-                    'allowTemplateLiterals': 'avoidEscape',
-                    'avoidEscape': true
+                    allowTemplateLiterals: 'avoidEscape',
+                    avoidEscape: true
                 }
             ],
-            '@stylistic/semi': [ 'error', 'always' ],
+            '@stylistic/semi': ['error', 'always'],
             '@stylistic/semi-spacing': [
                 'error',
                 {
-                    'before': false,
-                    'after': true
+                    before: false,
+                    after: true
                 }
             ],
             '@stylistic/space-before-function-paren': [
                 'error',
                 {
-                    'anonymous': 'always',
-                    'asyncArrow': 'always',
-                    'named': 'never'
+                    anonymous: 'always',
+                    asyncArrow: 'always',
+                    named: 'never'
                 }
             ],
             '@stylistic/space-in-parens': 'off',
@@ -186,13 +186,13 @@ const thisConfig = [
                 'error',
                 'always',
                 {
-                    'line': {
-                        'exceptions': ['/']
+                    line: {
+                        exceptions: ['/']
                     },
-                    'block': {
-                        'markers': ['!'],
-                        'exceptions': ['*'],
-                        'balanced': true
+                    block: {
+                        markers: ['!'],
+                        exceptions: ['*'],
+                        balanced: true
                     }
                 }
             ]
@@ -201,19 +201,19 @@ const thisConfig = [
 
     {
         plugins: {
-            'import': pluginImport
+            import: pluginImport
         },
         rules: {
             ...pluginImport.flatConfigs.recommended.rules,
 
             'import/no-unresolved': ['error', {
-                'caseSensitive': true,
-                'amd': true,
-                'commonjs': true
+                caseSensitive: true,
+                amd: true,
+                commonjs: true
             }],
 
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/exports-last.md
-            'import/exports-last': [ 'error' ],
+            'import/exports-last': ['error'],
 
             'import/extensions': [
                 'error',
@@ -221,21 +221,21 @@ const thisConfig = [
                 {
                     ignorePackages: true,
                     pattern: {
-                        'js': 'always',
-                        'json': 'always',
-                        'mjs': 'always'
+                        js: 'always',
+                        json: 'always',
+                        mjs: 'always'
                     }
                 }
             ],
 
             // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
-            'import/no-default-export': [ 'error' ]
+            'import/no-default-export': ['error']
         }
     },
 
     {
         plugins: {
-            'n': pluginN
+            n: pluginN
         },
         rules: {
             ...pluginN.configs.recommended.rules,
@@ -258,7 +258,7 @@ const thisConfig = [
             ],
 
             'n/hashbang': 'off',
-            'n/no-deprecated-api': [ 'error' ],
+            'n/no-deprecated-api': ['error'],
             'n/no-extraneous-import': 'off',
             'n/no-extraneous-require': 'off',
 
@@ -266,12 +266,12 @@ const thisConfig = [
             // Ref: https://github.com/eslint-community/eslint-plugin-n/issues/349#issuecomment-2393189937
             'n/no-missing-import': 'off',
 
-            'n/no-missing-require': [ 'error' ],
+            'n/no-missing-require': ['error'],
             'n/no-unpublished-import': 'off',
             'n/no-unpublished-require': 'off',
 
             'n/no-unsupported-features/es-syntax': ['error', {
-                'version': '>=20'
+                version: '>=20'
             }],
 
             // TODO: Utilize this rule only inside Node.js environment
@@ -285,7 +285,7 @@ const thisConfig = [
 
     {
         plugins: {
-            'promise': pluginPromise
+            promise: pluginPromise
         },
         rules: {
             ...pluginPromise.configs['flat/recommended'].rules
@@ -294,7 +294,7 @@ const thisConfig = [
 
     {
         plugins: {
-            'unicorn': pluginUnicorn
+            unicorn: pluginUnicorn
         },
         rules: {
             ...pluginUnicorn.configs['flat/recommended'].rules,
@@ -310,10 +310,10 @@ const thisConfig = [
             'unicorn/filename-case': [
                 'error',
                 {
-                    'cases': {
-                        'camelCase': true,
-                        'pascalCase': true,
-                        'kebabCase': true
+                    cases: {
+                        camelCase: true,
+                        pascalCase: true,
+                        kebabCase: true
                     }
                 }
             ],
