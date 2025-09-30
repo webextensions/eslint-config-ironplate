@@ -2,7 +2,6 @@ const globals = require('globals');
 const pluginStylistic = require('@stylistic/eslint-plugin');
 
 const eslintIronPlateConfigNode = require('eslint-config-ironplate/node.js');
-const { languageOptions } = require('eslint-plugin-import/config/flat/react.js');
 
 // TODO: Simplify this configuration
 
