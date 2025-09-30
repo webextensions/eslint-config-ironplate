@@ -8,9 +8,10 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
+        "lint": "eslint . --report-unused-disable-directives",
         "postinstall": "./scripts/postinstall.sh",
         "postversion": "git push --follow-tags",
-        "test": "pwd && npm run --prefix ./test/js test"
+        "test": "npm run lint && pwd && npm run --prefix ./test/js test"
     },
     "peerDependencies": {
         "@eslint-react/eslint-plugin": "*",

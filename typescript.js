@@ -9,7 +9,8 @@ import coreConfig from './_core.js';
 //     }
 // }
 
-import pluginTypescript from '@typescript-eslint/eslint-plugin';
+// https://github.com/import-js/eslint-plugin-import/issues/2331#issuecomment-997417550
+import pluginTypescript from '@typescript-eslint/eslint-plugin'; // eslint-disable-line import/no-unresolved
 
 // NOTE: Also look into https://www.npmjs.com/package/eslint-import-resolver-typescript if that can be helpful in some cases
 
