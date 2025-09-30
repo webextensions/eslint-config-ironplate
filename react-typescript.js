@@ -1,4 +1,4 @@
-const reactConfig = require('./react.js');
+const reactConfig = require('./react.js').default;
 const typeScriptConfig = require('./typescript.js');
 
 const thisConfig = [

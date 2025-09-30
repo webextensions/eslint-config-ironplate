@@ -1,12 +1,12 @@
 // const globals = require('globals');
 
-const pluginJsxA11y = require('eslint-plugin-jsx-a11y');
-const pluginEslintReact = require('@eslint-react/eslint-plugin');
-const pluginReact = require('eslint-plugin-react');
-const pluginReactHooks = require('eslint-plugin-react-hooks');
-const pluginReactRefresh = require('eslint-plugin-react-refresh');
+import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import pluginEslintReact from '@eslint-react/eslint-plugin';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
-const coreConfig = require('./_core.js');
+import coreConfig from './_core.js';
 
 let thisConfig = coreConfig;
 
@@ -117,4 +117,4 @@ thisConfig = [
     }
 ];
 
-module.exports = [...thisConfig];
+export default [...thisConfig];
