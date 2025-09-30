@@ -1,5 +1,5 @@
-const nodeConfig = require('./node.js');
-const typeScriptConfig = require('./typescript.js');
+import nodeConfig from './node.js';
+import typeScriptConfig from './typescript.js';
 
 const thisConfig = [
     ...nodeConfig,
@@ -25,4 +25,4 @@ const thisConfig = [
     }
 ];
 
-module.exports = thisConfig;
+export default thisConfig;

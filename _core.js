@@ -12,15 +12,15 @@
 // TODO:
 //     Create "eslint-config-ironplate/base.js" which doesn't use any plugins
 
-const eslintJs = require('@eslint/js');
+import eslintJs from '@eslint/js';
 
-const pluginStylistic = require('@stylistic/eslint-plugin');
-const pluginImport = require('eslint-plugin-import');
-const pluginN = require('eslint-plugin-n');
-const pluginPromise = require('eslint-plugin-promise');
-const pluginUnicorn = require('eslint-plugin-unicorn').default;
+import pluginStylistic from '@stylistic/eslint-plugin';
+import pluginImport from 'eslint-plugin-import';
+import pluginN from 'eslint-plugin-n';
+import pluginPromise from 'eslint-plugin-promise';
+import pluginUnicorn from 'eslint-plugin-unicorn';
 
-module.exports = [
+const thisConfig = [
     {
         plugins: {
         },
@@ -363,3 +363,5 @@ module.exports = [
         }
     }
 ];
+
+export default thisConfig;

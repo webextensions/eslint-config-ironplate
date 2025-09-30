@@ -8,10 +8,8 @@ import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import coreConfig from './_core.js';
 
-let thisConfig = coreConfig;
-
-thisConfig = [
-    ...thisConfig,
+const thisConfig = [
+    ...coreConfig,
 
     {
         files: [
@@ -117,4 +115,4 @@ thisConfig = [
     }
 ];
 
-export default [...thisConfig];
+export default thisConfig;

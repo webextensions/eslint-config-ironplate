@@ -1,11 +1,11 @@
-const globals = require('globals');
-const pluginStylistic = require('@stylistic/eslint-plugin');
+import globals from 'globals';
+import pluginStylistic from '@stylistic/eslint-plugin';
 
-const eslintIronPlateConfigNode = require('eslint-config-ironplate/node.js');
+import eslintIronPlateConfigNode from 'eslint-config-ironplate/node.js';
 
 // TODO: Simplify this configuration
 
-module.exports = [
+const config = [
     ...eslintIronPlateConfigNode,
 
     {
@@ -40,3 +40,5 @@ module.exports = [
         }
     }
 ];
+
+export default config;

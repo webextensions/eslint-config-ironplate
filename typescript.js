@@ -1,7 +1,7 @@
-const coreConfig = require('./_core.js');
+import coreConfig from './_core.js';
 
 // // NOTE: When using this config, set this in config manually
-// const parser = require('@typescript-eslint/parser');
+// import parser from '@typescript-eslint/parser';
 // // and utilize it in the config as:
 // const config = {
 //     languageOptions: {
@@ -9,7 +9,7 @@ const coreConfig = require('./_core.js');
 //     }
 // }
 
-const pluginTypescript = require('@typescript-eslint/eslint-plugin');
+import pluginTypescript from '@typescript-eslint/eslint-plugin';
 
 // NOTE: Also look into https://www.npmjs.com/package/eslint-import-resolver-typescript if that can be helpful in some cases
 
@@ -18,10 +18,8 @@ const pluginTypescript = require('@typescript-eslint/eslint-plugin');
 //     https://github.com/import-js/eslint-plugin-import/pull/2829 (Pending as of 2024-Oct)
 //     For now, we may have to ignore liniting issue in `eslint.config.js` for `const parser = require('@typescript-eslint/parser');`
 
-let thisConfig = coreConfig;
-
-thisConfig = [
-    ...thisConfig,
+const thisConfig = [
+    ...coreConfig,
 
     {
         plugins: {
@@ -100,4 +98,4 @@ thisConfig = [
     }
 ];
 
-module.exports = [...thisConfig];
+export default thisConfig;

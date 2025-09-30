@@ -1,21 +1,19 @@
 // const globals = require('globals');
 
-const coreConfig = require('./_core.js');
+import coreConfig from './_core.js';
 
-let thisConfig = coreConfig;
+const thisConfig = [
+    ...coreConfig,
 
-thisConfig = [
-    ...thisConfig,
-
-    {
-        // languageOptions: {
-        //     globals: {
-        //         ...globals.commonjs,
-        //         ...globals.jest,
-        //         ...globals.node
-        //     }
-        // }
-    },
+    // {
+    //     languageOptions: {
+    //         globals: {
+    //             ...globals.commonjs,
+    //             ...globals.jest,
+    //             ...globals.node
+    //         }
+    //     }
+    // },
 
     {
         rules: {
@@ -36,4 +34,4 @@ thisConfig = [
     }
 ];
 
-module.exports = [...thisConfig];
+export default thisConfig;

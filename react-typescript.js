@@ -1,5 +1,5 @@
-const reactConfig = require('./react.js').default;
-const typeScriptConfig = require('./typescript.js');
+import reactConfig from './react.js';
+import typeScriptConfig from './typescript.js';
 
 const thisConfig = [
     ...reactConfig,
@@ -32,4 +32,4 @@ const thisConfig = [
 // NOTE: When using this config, set this in config manually
 // thisConfig.parser = '@typescript-eslint/parser';
 
-module.exports = [...thisConfig];
+export default thisConfig;

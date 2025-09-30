@@ -1,21 +1,19 @@
 // const globals = require('globals');
 
-const coreConfig = require('./_core.js');
+import coreConfig from './_core.js';
 
-let thisConfig = coreConfig;
+const thisConfig = [
+    ...coreConfig
 
-thisConfig = [
-    ...thisConfig,
-
-    {
-        // languageOptions: {
-        //     globals: {
-        //         ...globals.browser,
-        //         ...globals.jest,
-        //         ...globals.node
-        //     }
-        // }
-    }
+    // {
+    //     languageOptions: {
+    //         globals: {
+    //             ...globals.browser,
+    //             ...globals.jest,
+    //             ...globals.node
+    //         }
+    //     }
+    // }
 ];
 
-module.exports = [...thisConfig];
+export default thisConfig;
