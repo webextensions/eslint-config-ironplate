@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-ironplate",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Shareable ESLint configuration",
     "engines": {
         "node": ">=20"
