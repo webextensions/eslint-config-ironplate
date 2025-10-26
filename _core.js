@@ -327,6 +327,7 @@ const thisConfig = [
             'unicorn/no-fn-reference-in-iterator': 'off',
             'unicorn/no-for-loop': 'error',
             'unicorn/no-hex-escape': 'error',
+            'unicorn/no-immediate-mutation': 'off',
             'unicorn/no-instanceof-builtins': 'error',
             'unicorn/no-lonely-if': 'off',
             'unicorn/no-negated-condition': 'off',
