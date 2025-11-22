@@ -47,7 +47,19 @@ const thisConfig = [
                     multiline:  { delimiter: 'semi', requireLast: false }
                 }
             ],
-            '@stylistic/type-annotation-spacing': ['error', { before: false, after: true }],
+            '@stylistic/type-annotation-spacing': [
+                'error',
+                {
+                    before: true,
+                    after: true,
+                    overrides: {
+                        colon: {
+                            before: false,
+                            after: true
+                        }
+                    }
+                }
+            ],
 
             'no-unused-vars': 'off',
             '@typescript-eslint/no-unused-vars': ['error'],
