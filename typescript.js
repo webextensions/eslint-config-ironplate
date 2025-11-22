@@ -61,6 +61,10 @@ const thisConfig = [
                 }
             ],
 
+            // Turning it off from Linting since it is handled by TypeScript
+            // If we keep it on, then there can be cases where `type` defintions (eg: `VoidFunction`) can cause false positives
+            'no-undef': 'off',
+
             'no-unused-vars': 'off',
             '@typescript-eslint/no-unused-vars': ['error'],
 
