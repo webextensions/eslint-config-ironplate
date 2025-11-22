@@ -2,8 +2,7 @@
 
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 
-// https://github.com/import-js/eslint-plugin-import/issues/2331#issuecomment-997417550
-import pluginEslintReact from '@eslint-react/eslint-plugin'; // eslint-disable-line import/no-unresolved
+import pluginEslintReact from '@eslint-react/eslint-plugin';
 
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
