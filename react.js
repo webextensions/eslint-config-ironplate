@@ -73,8 +73,6 @@ const thisConfig = [
                 }
             ],
 
-            'react/prop-types': ['error'],
-
             // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
             'react/self-closing-comp': [
                 'error',
@@ -111,8 +109,7 @@ const thisConfig = [
     {
         ...pluginEslintReact.configs.recommended,
         rules: {
-            ...pluginEslintReact.configs.recommended.rules,
-            '@eslint-react/no-prop-types': 'off'
+            ...pluginEslintReact.configs.recommended.rules
         }
     }
 ];
