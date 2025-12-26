@@ -73,6 +73,8 @@ const thisConfig = [
                 }
             ],
 
+            'react/prop-types': 'off',
+
             // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
             'react/self-closing-comp': [
                 'error',
