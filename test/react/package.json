@@ -1,0 +1,22 @@
+{
+    "name": "react-fixture",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "eslint": "eslint .",
+        "test": "pwd && npm run eslint"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "*",
+        "react": "*"
+    },
+    "dependencies": {
+        "@eslint-react/eslint-plugin": "*",
+        "eslint-config-ironplate": "file:../../",
+        "eslint-plugin-react-hooks": "*",
+        "eslint-plugin-react-refresh": "*"
+    }
+}

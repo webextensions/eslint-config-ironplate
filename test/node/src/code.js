@@ -15,6 +15,11 @@ console.log(__filename);
 // eslint-disable-next-line no-alert
 alert(123);
 
+// "no-unassigned-vars" got added to "eslint:recommended" in ESLint 10
+// eslint-disable-next-line no-unassigned-vars
+let unassignedVariable;
+console.log(unassignedVariable);
+
 jQuery(() => {
     // eslint-disable-next-line no-constant-condition
     if (true) {

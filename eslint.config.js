@@ -1,6 +1,6 @@
 import globals from 'globals';
 
-import eslintIronPlateConfigNode from './node.js';
+import eslintIronplateConfigNode from './node.js';
 
 const config = [
     {
@@ -9,7 +9,7 @@ const config = [
         ]
     },
 
-    ...eslintIronPlateConfigNode,
+    ...eslintIronplateConfigNode,
 
     {
         files: ['*.cjs'],
@@ -21,14 +21,14 @@ const config = [
     },
 
     {
-        files: ['*.js', '*.mjs'],
+        files: ['*.js', '*.mjs', 'scripts/**/*.js'],
         languageOptions: {
             globals: {
                 ...globals.nodeBuiltin
             }
         },
         rules: {
-            'import/no-default-export': 'off'
+            'import-x/no-default-export': 'off'
         }
     }
 ];

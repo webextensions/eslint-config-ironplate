@@ -15,7 +15,7 @@
 import eslintJs from '@eslint/js';
 
 import pluginStylistic from '@stylistic/eslint-plugin';
-import pluginImport from 'eslint-plugin-import';
+import pluginImportX, { createNodeResolver, flatConfigs as pluginImportXFlatConfigs } from 'eslint-plugin-import-x';
 import pluginN from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginUnicorn from 'eslint-plugin-unicorn';
@@ -23,6 +23,12 @@ import pluginUnicorn from 'eslint-plugin-unicorn';
 const thisConfig = [
     {
         plugins: {
+        },
+
+        // Equivalent of the "--report-unused-disable-directives" CLI flag
+        // https://eslint.org/docs/latest/use/configure/configuration-files#reporting-unused-disable-directives
+        linterOptions: {
+            reportUnusedDisableDirectives: 'error'
         },
 
         // languageOptions: {
@@ -52,6 +58,7 @@ const thisConfig = [
             'no-shadow': 'off',
             'no-template-curly-in-string': ['error'],
             'no-throw-literal': 'error',
+            'no-unassigned-vars': 'error',
             'no-unused-vars': 'error',
             'no-use-before-define': ['error', { functions: false, classes: true }],
             'no-var': ['error'],
@@ -60,7 +67,6 @@ const thisConfig = [
             'prefer-regex-literals': 'error',
             'preserve-caught-error': 'error',
             'require-await': 'error',
-            'semi': 'error',
             'unicode-bom': ['error', 'never']
 
             // // TODO: Try to identify a well maintained package which can provide some of the rules provided by
@@ -201,21 +207,29 @@ const thisConfig = [
 
     {
         plugins: {
-            import: pluginImport
+            'import-x': pluginImportX
+        },
+        settings: {
+            // "eslint-plugin-import-x" doesn't ship the legacy "node" resolver, so without this setting, its rules
+            // fail with "Resolve error: node with invalid interface loaded as resolver"
+            // https://github.com/un-ts/eslint-plugin-import-x#import-xresolver-next
+            'import-x/resolver-next': [
+                createNodeResolver()
+            ]
         },
         rules: {
-            ...pluginImport.flatConfigs.recommended.rules,
+            ...pluginImportXFlatConfigs.recommended.rules,
 
-            'import/no-unresolved': ['error', {
+            'import-x/no-unresolved': ['error', {
                 caseSensitive: true,
                 amd: true,
                 commonjs: true
             }],
 
-            // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/exports-last.md
-            'import/exports-last': ['error'],
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/exports-last.md
+            'import-x/exports-last': ['error'],
 
-            'import/extensions': [
+            'import-x/extensions': [
                 'error',
                 'never',
                 {
@@ -228,8 +242,8 @@ const thisConfig = [
                 }
             ],
 
-            // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/no-default-export.md
-            'import/no-default-export': ['error']
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-default-export.md
+            'import-x/no-default-export': ['error']
         }
     },
 
@@ -238,7 +252,8 @@ const thisConfig = [
             n: pluginN
         },
         rules: {
-            ...pluginN.configs.recommended.rules,
+            // The Node.js-environment "n/" rules (including the "flat/recommended" spread) live in the
+            // "nodeDelta" of node.js; only the generically-relevant rules are kept here
 
             // https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
             'n/callback-return': [
@@ -257,29 +272,12 @@ const thisConfig = [
                 ]
             ],
 
-            'n/hashbang': 'off',
-            'n/no-deprecated-api': ['error'],
-            'n/no-extraneous-import': 'off',
-            'n/no-extraneous-require': 'off',
-
-            // Rather than "n/no-missing-import", use "import/no-unresolved" / "import-x/no-unresolved"
-            // Ref: https://github.com/eslint-community/eslint-plugin-n/issues/349#issuecomment-2393189937
-            'n/no-missing-import': 'off',
-
+            'n/no-exports-assign': 'error',
             'n/no-missing-require': ['error'],
-            'n/no-unpublished-import': 'off',
-            'n/no-unpublished-require': 'off',
 
             'n/no-unsupported-features/es-syntax': ['error', {
                 version: '>=20'
-            }],
-
-            // TODO: Utilize this rule only inside Node.js environment
-            'n/no-unsupported-features/node-builtins': 'off'
-            // 'n/no-unsupported-features/node-builtins': ['error', {
-            //     'version': '>=20',
-            //     'ignores': []
-            // }]
+            }]
         }
     },
 
@@ -297,7 +295,7 @@ const thisConfig = [
             unicorn: pluginUnicorn
         },
         rules: {
-            ...pluginUnicorn.configs['flat/recommended'].rules,
+            ...pluginUnicorn.configs.recommended.rules,
 
             'unicorn/catch-error-name': 'off',
             'unicorn/consistent-function-scoping': 'off',
@@ -320,11 +318,9 @@ const thisConfig = [
             'unicorn/import-style': 'off',
             'unicorn/new-for-builtins': 'error',
             'unicorn/no-abusive-eslint-disable': 'error',
-            'unicorn/no-array-push-push': 'off',
             'unicorn/no-array-reverse': 'off',
             'unicorn/no-await-expression-member': 'off',
             'unicorn/no-console-spaces': 'error',
-            'unicorn/no-fn-reference-in-iterator': 'off',
             'unicorn/no-for-loop': 'error',
             'unicorn/no-hex-escape': 'error',
             'unicorn/no-immediate-mutation': 'off',
@@ -359,7 +355,6 @@ const thisConfig = [
             'unicorn/prefer-top-level-await': 'off',
             'unicorn/prefer-type-error': 'error',
             'unicorn/prevent-abbreviations': 'off',
-            'unicorn/regex-shorthand': 'off',
             'unicorn/throw-new-error': 'error'
         }
     }

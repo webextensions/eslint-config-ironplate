@@ -1,28 +1,13 @@
-import nodeConfig from './node.js';
-import typeScriptConfig from './typescript.js';
+import coreConfig from './_core.js';
+import { nodeDelta } from './node.js';
+import { typeScriptDelta } from './typescript.js';
 
+// Compose "core + deltas" so that the core config applies only once (spreading the full node.js and typescript.js
+// configs would apply it twice, silently reverting the overrides in between).
 const thisConfig = [
-    ...nodeConfig,
-    ...typeScriptConfig,
-
-    {
-        rules: {
-            'import/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        cjs: 'always',
-                        js: 'always',
-                        json: 'always',
-                        mjs: 'always',
-                        ts: 'always'
-                    }
-                }
-            ]
-        }
-    }
+    ...coreConfig,
+    ...nodeDelta,
+    ...typeScriptDelta
 ];
 
 export default thisConfig;

@@ -1,12 +1,12 @@
 import globals from 'globals';
 import pluginStylistic from '@stylistic/eslint-plugin';
 
-import eslintIronPlateConfigNode from 'eslint-config-ironplate/node.js';
+import eslintIronplateConfigNode from 'eslint-config-ironplate/node.js';
 
 // TODO: Simplify this configuration
 
 const config = [
-    ...eslintIronPlateConfigNode,
+    ...eslintIronplateConfigNode,
 
     {
         ignores: [
@@ -23,8 +23,6 @@ const config = [
         },
 
         rules: {
-            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
-
             '@stylistic/comma-dangle': ['error', 'never'],
             '@stylistic/semi': ['error', 'always'],
             '@stylistic/indent': [

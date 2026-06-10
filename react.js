@@ -1,40 +1,23 @@
-// const globals = require('globals');
-
-import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
+// NOTE: The react-family packages are optional peerDependencies (npm doesn't auto-install them), hence this
+//       repository also lists them under its own devDependencies (otherwise these imports wouldn't resolve here)
 
 import pluginEslintReact from '@eslint-react/eslint-plugin';
-
-import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 import coreConfig from './_core.js';
 
-const thisConfig = [
-    ...coreConfig,
+const reactFileGlobs = [
+    '**/*.cjs',
+    '**/*.js',
+    '**/*.jsx',
+    '**/*.mjs'
+];
 
+// The React-specific additions on top of the core config (exported for composite configs, eg: react-typescript.js)
+const reactDelta = [
     {
-        files: [
-            '**/*.cjs',
-            '**/*.js',
-            '**/*.jsx', // Include .jsx files as well for linting
-            '**/*.mjs'
-        ]
-    },
-
-    {
-        plugins: {
-            'jsx-a11y': pluginJsxA11y
-        },
-        rules: {
-            ...pluginJsxA11y.configs.recommended.rules
-        }
-    },
-
-    {
-        plugins: {
-            react: pluginReact
-        },
+        files: reactFileGlobs,
 
         languageOptions: {
             parserOptions: {
@@ -49,16 +32,8 @@ const thisConfig = [
             // }
         },
 
-        settings: {
-            react: {
-                version: 'detect'
-            }
-        },
-
         rules: {
-            ...pluginReact.configs.flat.recommended.rules,
-
-            'import/extensions': [
+            'import-x/extensions': [
                 'error',
                 'never',
                 {
@@ -73,10 +48,8 @@ const thisConfig = [
                 }
             ],
 
-            'react/prop-types': 'off',
-
-            // https://github.com/yannickcr/eslint-plugin-react/blob/HEAD/docs/rules/self-closing-comp.md
-            'react/self-closing-comp': [
+            // https://eslint.style/rules/jsx-self-closing-comp
+            '@stylistic/jsx-self-closing-comp': [
                 'error',
                 {
                     component: true,
@@ -87,6 +60,7 @@ const thisConfig = [
     },
 
     {
+        files: reactFileGlobs,
         plugins: {
             'react-hooks': pluginReactHooks
         },
@@ -99,6 +73,7 @@ const thisConfig = [
     },
 
     {
+        files: reactFileGlobs,
         plugins: {
             'react-refresh': pluginReactRefresh
         },
@@ -110,10 +85,30 @@ const thisConfig = [
     // Include the @eslint-react/eslint-plugin recommended config (which also contains the plugin definitions)
     {
         ...pluginEslintReact.configs.recommended,
+        files: reactFileGlobs, // must stay after the spread (so the recommended config can't clobber it)
         rules: {
-            ...pluginEslintReact.configs.recommended.rules
+            ...pluginEslintReact.configs.recommended.rules,
+
+            // "@eslint-react/eslint-plugin" v5 ships its own ported copies of several "eslint-plugin-react-hooks"
+            // rules in its recommended config. Keeping "eslint-plugin-react-hooks" authoritative for those, hence
+            // turning the ported copies off (to avoid duplicate diagnostics).
+            '@eslint-react/error-boundaries': 'off',
+            '@eslint-react/exhaustive-deps': 'off',
+            '@eslint-react/purity': 'off',
+            '@eslint-react/rules-of-hooks': 'off',
+            '@eslint-react/set-state-in-effect': 'off',
+            '@eslint-react/set-state-in-render': 'off',
+            '@eslint-react/static-components': 'off',
+            '@eslint-react/unsupported-syntax': 'off',
+            '@eslint-react/use-memo': 'off'
         }
     }
 ];
 
+const thisConfig = [
+    ...coreConfig,
+    ...reactDelta
+];
+
+export { reactDelta, reactFileGlobs };
 export default thisConfig;

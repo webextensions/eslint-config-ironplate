@@ -1,43 +1,33 @@
+// NOTE: The "typescript-eslint" package is an optional peerDependency (npm doesn't auto-install it), hence this
+//       repository also lists it under its own devDependencies (otherwise this import wouldn't resolve here)
+
+import tseslint from 'typescript-eslint';
+
+import { createNodeResolver } from 'eslint-plugin-import-x';
+
 import coreConfig from './_core.js';
 
-// // NOTE: When using this config, set this in config manually
-// import parser from '@typescript-eslint/parser';
-// // and utilize it in the config as:
-// const config = {
-//     languageOptions: {
-//         parser
-//     }
-// }
+// TODO: Also look into https://www.npmjs.com/package/eslint-import-resolver-typescript if that can be helpful in some cases
 
-// https://github.com/import-js/eslint-plugin-import/issues/2331#issuecomment-997417550
-import pluginTypescript from '@typescript-eslint/eslint-plugin'; // eslint-disable-line import/no-unresolved
+const typeScriptFileGlobs = ['**/*.cts', '**/*.mts', '**/*.ts', '**/*.tsx'];
 
-// NOTE: Also look into https://www.npmjs.com/package/eslint-import-resolver-typescript if that can be helpful in some cases
-
-// NOTE:
-//     https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1663038247
-//     https://github.com/import-js/eslint-plugin-import/pull/2829 (Pending as of 2024-Oct)
-//     For now, we may have to ignore liniting issue in `eslint.config.js` for `const parser = require('@typescript-eslint/parser');`
-
-const thisConfig = [
-    ...coreConfig,
+// The TypeScript-specific additions on top of the core config (exported for composite configs, eg:
+// node-typescript.js and react-typescript.js)
+const typeScriptDelta = [
+    // The "typescript-eslint" recommended configs come bundled with the parser ("typescript-eslint/base"), hence
+    // consumers don't need to set up "languageOptions.parser" themselves.
+    // https://typescript-eslint.io/users/configs/#recommended
+    ...tseslint.configs.recommended.map(function (config) {
+        return {
+            ...config,
+            files: typeScriptFileGlobs
+        };
+    }),
 
     {
-        plugins: {
-            '@typescript-eslint': pluginTypescript
-        },
-
-        // TODO: Verify the validity/utility of the following note in the context of new flat config system
-        // NOTE: In old config system, we were applying "plugin:@typescript-eslint/recommended" first and then applying
-        //       `...thisConfig.extends` because otherwise, if specified later, at the time of writing that note (with
-        //       @typescript-eslint/eslint-plugin@8.8.1), various linting rules were disabled to avoid duplicate
-        //       warnings/errors which TypeScript also catches (https://github.com/typescript-eslint/typescript-eslint/issues/2477#issuecomment-686892459)
-        //       which leads to some rules not being applied, eg: 'no-undef', 'no-dupe-keys' etc.
-        //       Ref: https://github.com/typescript-eslint/typescript-eslint/blob/v8.8.1/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts#L38
+        files: typeScriptFileGlobs,
 
         rules: {
-            ...pluginTypescript.configs.recommended.rules, // https://typescript-eslint.io/users/configs/#recommended
-
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
             // https://eslint.style/rules
             '@stylistic/member-delimiter-style': [
@@ -74,28 +64,27 @@ const thisConfig = [
             '@typescript-eslint/ban-ts-comment': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-require-imports': 'off',
-            '@typescript-eslint/no-this-alias': 'off',
-            '@typescript-eslint/no-var-requires': ['off']
+            '@typescript-eslint/no-this-alias': 'off'
         }
     },
 
     {
         settings: {
-            'import/resolver': {
-                node: {
-                    // https://github.com/import-js/eslint-plugin-import/blob/67cc79841fc823ad4af2532af2dc6704e4b3b03a/config/typescript.js
+            // https://github.com/un-ts/eslint-plugin-import-x#import-xresolver-next
+            'import-x/resolver-next': [
+                createNodeResolver({
                     extensions: (function () {
                         const typeScriptExtensions = ['.cts', '.mts', '.ts', '.tsx'];
                         const allExtensions = [...typeScriptExtensions, '.cjs', '.js', '.jsx', '.mjs'];
 
                         return allExtensions;
                     })()
-                }
-            }
+                })
+            ]
         },
 
         rules: {
-            'import/extensions': [
+            'import-x/extensions': [
                 'error',
                 'never',
                 {
@@ -107,7 +96,8 @@ const thisConfig = [
                         json: 'always',
                         mjs: 'always',
                         mts: 'always',
-                        ts: 'always'
+                        ts: 'always',
+                        tsx: 'always'
                     }
                 }
             ]
@@ -115,4 +105,10 @@ const thisConfig = [
     }
 ];
 
+const thisConfig = [
+    ...coreConfig,
+    ...typeScriptDelta
+];
+
+export { typeScriptDelta, typeScriptFileGlobs };
 export default thisConfig;

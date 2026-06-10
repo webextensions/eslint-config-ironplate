@@ -1,0 +1,20 @@
+{
+    "name": "typescript-fixture",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "eslint": "eslint .",
+        "test": "pwd && npm run eslint"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "*",
+        "typescript": "*"
+    },
+    "dependencies": {
+        "eslint-config-ironplate": "file:../../",
+        "typescript-eslint": "*"
+    }
+}
