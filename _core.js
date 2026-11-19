@@ -132,6 +132,25 @@ const thisConfig = [
             '@stylistic/key-spacing': 'off',
             '@stylistic/keyword-spacing': ['error'],
             '@stylistic/linebreak-style': ['error', 'unix'],
+            // https://eslint.style/rules/list-style
+            // Enabled with its defaults by the recommended set above; limited here to braces, where it replaces the
+            // deprecated "object-curly-newline" and "object-curly-spacing":
+            //     * Arrays ("[]") stay free-form, so that grouped multi-item lines (e.g. lookup tables) are allowed
+            //     * Calls / parameters ("()") stay with the deprecated "function-call-argument-newline" and
+            //       "function-paren-newline": list-style's auto-fix in @stylistic 6.0.1 deletes the "(" of a
+            //       parenthesized multi-line argument but keeps its ")", e.g. `fn('a', (\n    <div />\n));`
+            '@stylistic/list-style': [
+                'error',
+                {
+                    overrides: {
+                        '()': 'off',
+                        '<>': 'off',
+                        '[]': 'off',
+                        '{}': { singleLine: { spacing: 'always' } },
+                        'IfStatement': 'off'
+                    }
+                }
+            ],
             '@stylistic/max-statements-per-line': 'off',
             '@stylistic/no-extra-semi': 'error',
             '@stylistic/no-mixed-operators': ['error', { allowSamePrecedence: false }],
@@ -151,8 +170,6 @@ const thisConfig = [
 
             '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
             '@stylistic/no-trailing-spaces': 'error',
-            '@stylistic/object-curly-newline': ['error', { consistent: true }],
-            '@stylistic/object-curly-spacing': ['error', 'always'],
             '@stylistic/one-var-declaration-per-line': ['error', 'always'],
             '@stylistic/operator-linebreak': ['error', 'after'],
             '@stylistic/quote-props': [

@@ -12,3 +12,9 @@
 * Revisit "eslint-plugin-jsx-a11y" once it ships ESLint 10 support
   (https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) (https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1075) and re-add its recommended a11y rule set.
   Note: The main known consumer disables several "jsx-a11y/*" rules locally, so re-adding it is low-risk.
+
+* Revisit the deprecated "@stylistic/function-call-argument-newline" and "@stylistic/function-paren-newline" once
+  "@stylistic/list-style" stops breaking parenthesized arguments on auto-fix (in 6.0.1, `fn('a', (\n    <div />\n));`
+  is fixed to `fn('a',<div />\n));`, a syntax error), then drop the "()" override of "list-style" in `_core.js` and
+  remove the two rules. Expect new reports for spaces inside call parentheses ("space-in-parens" is off here) and for
+  function parameters with mixed line breaks.
