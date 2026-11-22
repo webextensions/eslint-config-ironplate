@@ -25,6 +25,11 @@ const PRESET_FILES = [
     'react-typescript.js'
 ];
 
+// All the combinations of the features of createIronplateConfig()
+const FEATURE_COMBINATIONS = [false, true].flatMap((node) => [false, true].flatMap((react) => [false, true].map(
+    (typescript) => ({ node, react, typescript })
+)));
+
 const assertAllNamedAndUnique = function (configArray, label) {
     const unnamedIndexes = configArray
         .map((config, index) => (typeof config.name === 'string' && config.name !== '' ? null : index))
@@ -50,5 +55,14 @@ for (const presetFile of PRESET_FILES) {
         const { default: presetConfig } = await import(presetUrl);
 
         assertAllNamedAndUnique(presetConfig, presetFile);
+    });
+}
+
+for (const features of FEATURE_COMBINATIONS) {
+    const label = `createIronplateConfig(${JSON.stringify(features)})`;
+    test(`Config objects of ${label} are all named, with unique names`, async () => {
+        const { createIronplateConfig } = await import(pathToFileURL(path.join(PACKAGE_DIRECTORY, 'index.js')).href);
+
+        assertAllNamedAndUnique(await createIronplateConfig(features), label);
     });
 }

@@ -1,29 +1,12 @@
-import coreConfig, { createJsxStylisticConfig } from './_core.js';
-import { reactDelta, reactFileGlobs } from './react.js';
-import { typeScriptDelta, typeScriptFileGlobs } from './typescript.js';
+import { composeIronplateConfig } from './_compose-ironplate-config.js';
+import { createReactConfigs } from './_react.js';
+import { createTypeScriptConfigs } from './_typescript.js';
 
-const allFileGlobs = [...reactFileGlobs, ...typeScriptFileGlobs];
-
-// Compose "core + deltas" so that the core config applies only once (spreading the full react.js and typescript.js
-// configs would apply it twice, silently reverting the overrides in between).
-const thisConfig = [
-    ...coreConfig,
-
-    // Re-scope the React delta to also cover the TypeScript extensions ("files" doesn't cascade in flat config, and
-    // react.js itself must not list the TypeScript globs, or plain-React projects would lint TypeScript files
-    // without a TypeScript parser)
-    ...reactDelta.map(function (config) {
-        return {
-            ...config,
-            files: allFileGlobs
-        };
-    }),
-
-    ...typeScriptDelta,
-
-    // The JSX stylistic rules for the React files (not re-scoped like the React delta above: .ts files can't contain
-    // JSX, and the .tsx files get them from the TypeScript delta)
-    createJsxStylisticConfig({ name: 'ironplate/react/stylistic-jsx', files: reactFileGlobs })
-];
+// Same as `await createIronplateConfig({ react: true, typescript: true })`
+const thisConfig = composeIronplateConfig({
+    features: { react: true, typescript: true },
+    createReactConfigs,
+    createTypeScriptConfigs
+});
 
 export default thisConfig;

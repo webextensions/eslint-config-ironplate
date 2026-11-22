@@ -35,6 +35,29 @@ export default [
 Note: For the TypeScript configs, no `languageOptions.parser` setup is needed - the parser comes bundled (via the
 `typescript-eslint` package).
 
+## Config factory
+The presets above are fixed combinations of three features: `node`, `react` and `typescript`. To pick any
+combination (including ones without a preset file, eg: Node.js + React + TypeScript in one package), use the async
+`createIronplateConfig()` factory:
+```js
+import { createIronplateConfig } from 'eslint-config-ironplate';
+
+export default [
+    ...(await createIronplateConfig({ node: true, react: true, typescript: true }))
+
+    // ... project specific configuration ...
+];
+```
+
+- All the options are booleans and default to `false`. `createIronplateConfig()` (no options) gives the same config as
+  `eslint-config-ironplate`, and eg: `createIronplateConfig({ node: true, typescript: true })` the same as
+  `eslint-config-ironplate/node-typescript.js`.
+- It is async because it loads the optional peerDependencies (the react-family plugins, `typescript` and
+  `typescript-eslint`) only for the features that need them. If one of them is missing, it fails with a message naming
+  the packages to install.
+- Unknown options (eg: a typo like `{ ts: true }`) throw a `TypeError` instead of silently producing a config without
+  that feature.
+
 ## Globals
 These configs intentionally do not declare any language globals, since the right set depends on where your code
 runs (Node.js, browser, tests etc.). Without declaring them, the `no-undef` rule would flag identifiers like
@@ -66,10 +89,10 @@ to different parts of the project, use multiple config objects scoped via `files
 `{ files: ['**/*.test.js'], languageOptions: { globals: { ...globals.jest } } }`.
 
 ## Supported Node.js version
-In the Node.js configs (`node.js`, `node-typescript.js`), the `n/no-unsupported-features/*` rules (`es-syntax`,
-`es-builtins`, `node-builtins`) report language features and Node.js APIs which are not available in the Node.js
-versions your project supports. These configs don't set a version for them, so they follow your project, in this
-order:
+In the Node.js configs (`node.js`, `node-typescript.js`, or the `node` feature of `createIronplateConfig()`), the
+`n/no-unsupported-features/*` rules (`es-syntax`, `es-builtins`, `node-builtins`) report language features and Node.js
+APIs which are not available in the Node.js versions your project supports. These configs don't set a version for
+them, so they follow your project, in this order:
 - `settings: { n: { version } }` in your ESLint config, when set
 - otherwise the `engines.node` field of your `package.json` (then its `devEngines.runtime`)
 - otherwise `>=16.0.0`

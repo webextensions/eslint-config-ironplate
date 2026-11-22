@@ -20,6 +20,8 @@ import pluginN from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 
+import { reactFileGlobs } from './_file-globs.js';
+
 const isJsxStylisticRule = function (ruleId) {
     return ruleId.startsWith('@stylistic/jsx-');
 };
@@ -36,7 +38,10 @@ const stylisticRecommendedJsxRules = Object.fromEntries(
 // "npx @eslint/config-inspector" and in some ESLint error messages, and test/config-names.test.js uses it to catch a
 // config object being applied twice (eg: by spreading two full presets, which would silently revert the overrides in
 // between)
-const thisConfig = [
+//
+// The core config objects which don't depend on the selected features (node / react / typescript). The
+// feature-dependent parts of the core config are computed by createCoreConfigs() below.
+const coreConfigs = [
     {
         name: 'ironplate/core/base',
 
@@ -113,8 +118,9 @@ const thisConfig = [
 
         rules: {
             // https://eslint.style/rules
-            // The "@stylistic/jsx-*" rules of the recommended set are applied only to the files which can contain JSX
-            // instead (see createJsxStylisticConfig() below)
+            // The "@stylistic/jsx-*" rules of the recommended set live in the "ironplate/core/stylistic-jsx" config
+            // object instead (see createJsxStylisticConfigs() below), which applies only to the files that can
+            // contain JSX
             ...stylisticRecommendedRulesWithoutJsx,
 
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
@@ -241,14 +247,8 @@ const thisConfig = [
         plugins: {
             'import-x': pluginImportX
         },
-        settings: {
-            // "eslint-plugin-import-x" doesn't ship the legacy "node" resolver, so without this setting, its rules
-            // fail with "Resolve error: node with invalid interface loaded as resolver"
-            // https://github.com/un-ts/eslint-plugin-import-x#import-xresolver-next
-            'import-x/resolver-next': [
-                createNodeResolver()
-            ]
-        },
+        // The "import-x/resolver-next" setting depends on the selected features, see createImportXResolutionConfig()
+        // below
         rules: {
             ...pluginImportXFlatConfigs.recommended.rules,
 
@@ -285,8 +285,8 @@ const thisConfig = [
             n: pluginN
         },
         rules: {
-            // The Node.js-environment "n/" rules (including the "flat/recommended" spread) live in the
-            // "nodeDelta" of node.js; only the generically-relevant rules are kept here
+            // The Node.js-environment "n/" rules (including the "flat/recommended" spread) live in _node.js; only the
+            // generically-relevant rules are kept here
 
             // https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
             'n/callback-return': [
@@ -309,7 +309,7 @@ const thisConfig = [
             'n/no-missing-require': ['error']
 
             // The "n/no-unsupported-features/*" rules check the code against a Node.js version, so they are part of the
-            // Node.js configs (node.js) only (eg: they would be meaningless for the browser code of the React configs)
+            // "node" feature (_node.js) only (eg: they would be meaningless for the browser code of the React configs)
         }
     },
 
@@ -396,28 +396,69 @@ const thisConfig = [
     }
 ];
 
-// The "@stylistic/jsx-*" rules, for the given files which can contain JSX: react.js / react-typescript.js apply it to
-// the React files, typescript.js to the .tsx files (the TypeScript parser always parses JSX in .tsx files). Kept here
-// (rather than in react.js), because "@stylistic/eslint-plugin" is a required peerDependency, while the React plugins
-// are optional.
-const createJsxStylisticConfig = function ({ name, files }) {
+// The module resolution of "import-x", decided once from the selected features (instead of each feature overriding
+// the previous value, which made the result depend on the order of the config objects)
+const createImportXResolutionConfig = function ({ typescript }) {
     return {
-        name,
+        name: 'ironplate/core/import-x-resolution',
 
-        files,
-
-        rules: {
-            ...stylisticRecommendedJsxRules,
-
-            // https://eslint.style/rules
-            '@stylistic/jsx-curly-brace-presence': 'off',
-            '@stylistic/jsx-indent-props': ['error', 4],
-            '@stylistic/jsx-one-expression-per-line': 'off',
-            '@stylistic/jsx-tag-spacing': 'off',
-            '@stylistic/jsx-wrap-multilines': 'off'
+        settings: {
+            // "eslint-plugin-import-x" doesn't ship the legacy "node" resolver, so without this setting, its rules
+            // fail with "Resolve error: node with invalid interface loaded as resolver"
+            // https://github.com/un-ts/eslint-plugin-import-x#import-xresolver-next
+            'import-x/resolver-next': [
+                (
+                    typescript ?
+                        createNodeResolver({
+                            extensions: ['.cts', '.mts', '.ts', '.tsx', '.cjs', '.js', '.jsx', '.mjs']
+                        }) :
+                        createNodeResolver()
+                )
+            ]
         }
     };
 };
 
-export { createJsxStylisticConfig };
-export default thisConfig;
+// The "@stylistic/jsx-*" rules, applied only to the files that can contain JSX: the React files (when the "react"
+// feature is selected) and the .tsx files (when the "typescript" feature is selected, since the TypeScript parser
+// always parses JSX in .tsx files). Kept in "core" (rather than in _react.js), because "@stylistic/eslint-plugin" is a
+// required peerDependency, while the React plugins are optional.
+const createJsxStylisticConfigs = function ({ react, typescript }) {
+    const files = [
+        ...(react ? reactFileGlobs : []),
+        ...(typescript ? ['**/*.tsx'] : [])
+    ];
+    if (files.length === 0) {
+        return [];
+    }
+
+    return [
+        {
+            name: 'ironplate/core/stylistic-jsx',
+
+            files,
+
+            rules: {
+                ...stylisticRecommendedJsxRules,
+
+                // https://eslint.style/rules
+                '@stylistic/jsx-curly-brace-presence': 'off',
+                '@stylistic/jsx-indent-props': ['error', 4],
+                '@stylistic/jsx-one-expression-per-line': 'off',
+                '@stylistic/jsx-tag-spacing': 'off',
+                '@stylistic/jsx-wrap-multilines': 'off'
+            }
+        }
+    ];
+};
+
+// The complete core part of the config for the given features
+const createCoreConfigs = function ({ react, typescript }) {
+    return [
+        ...coreConfigs,
+        createImportXResolutionConfig({ typescript }),
+        ...createJsxStylisticConfigs({ react, typescript })
+    ];
+};
+
+export { coreConfigs, createCoreConfigs };

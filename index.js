@@ -1,9 +1,10 @@
 // const globals = require('globals');
 
-import coreConfig from './_core.js';
+import { composeIronplateConfig } from './_compose-ironplate-config.js';
 
+// The core preset (no features). For other combinations, see the other preset files or createIronplateConfig().
 const thisConfig = [
-    ...coreConfig
+    ...composeIronplateConfig({ features: {} })
 
     // {
     //     languageOptions: {
@@ -16,4 +17,7 @@ const thisConfig = [
     // }
 ];
 
+// createIronplateConfig() only loads the optional peerDependencies (React / TypeScript) on demand, so exporting it
+// from here keeps this entry point usable without them
+export { createIronplateConfig } from './_create-ironplate-config.js';
 export default thisConfig;

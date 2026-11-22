@@ -12,8 +12,9 @@
 //     $ npm run test:rules:update    # Accept the current rule sets (rewrites the JSON files; review the git diff!)
 //
 // File naming: "<preset>.<extension>.json", eg: "typescript.ts.json" holds what "typescript.js" resolves to for a
-// ".ts" file. Extensions which resolve identically within a preset (eg: .js/.cjs/.mjs, or .ts/.cts/.mts) are
-// represented by one of them.
+// ".ts" file. Feature combinations which have no preset file are resolved via createIronplateConfig() and named
+// "factory-<features>.<extension>.json". Extensions which resolve identically within a config (eg: .js/.cjs/.mjs, or
+// .ts/.cts/.mts) are represented by one of them.
 //
 // File format: one rule per line (rather than one array element per line), so that the files stay small and a changed
 // rule shows up as a one-line diff.
@@ -35,15 +36,40 @@ const TEST_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_DIRECTORY = path.resolve(TEST_DIRECTORY, '..');
 const SNAPSHOT_DIRECTORY = path.join(TEST_DIRECTORY, 'rules-snapshot');
 
-// Preset file -> the representative file extensions to resolve the rules for
-const SNAPSHOT_MATRIX = {
-    'index.js': ['js'],
-    'node.js': ['js'],
-    'react.js': ['jsx'],
-    'typescript.js': ['js', 'ts', 'tsx'],
-    'node-typescript.js': ['js', 'ts', 'tsx'],
-    'react-typescript.js': ['jsx', 'ts', 'tsx']
+const importFromPackage = async function (file) {
+    return await import(pathToFileURL(path.join(PACKAGE_DIRECTORY, file)).href);
 };
+
+const presetEntry = function (presetFile, extensions) {
+    return {
+        label: presetFile,
+        snapshotPrefix: path.basename(presetFile, '.js'),
+        loadConfig: async () => (await importFromPackage(presetFile)).default,
+        extensions
+    };
+};
+
+const factoryEntry = function (features, extensions) {
+    return {
+        label: `createIronplateConfig(${JSON.stringify(features)})`,
+        snapshotPrefix: `factory-${Object.keys(features).join('-')}`,
+        loadConfig: async () => await (await importFromPackage('index.js')).createIronplateConfig(features),
+        extensions
+    };
+};
+
+// The configs to snapshot, with the representative file extensions to resolve the rules for. Together, the preset
+// files and the factory entries cover all the combinations of the "node", "react" and "typescript" features.
+const SNAPSHOT_MATRIX = [
+    presetEntry('index.js', ['js']),
+    presetEntry('node.js', ['js']),
+    presetEntry('react.js', ['jsx']),
+    presetEntry('typescript.js', ['js', 'ts', 'tsx']),
+    presetEntry('node-typescript.js', ['js', 'ts', 'tsx']),
+    presetEntry('react-typescript.js', ['jsx', 'ts', 'tsx']),
+    factoryEntry({ node: true, react: true }, ['jsx']),
+    factoryEntry({ node: true, react: true, typescript: true }, ['jsx', 'ts', 'tsx'])
+];
 
 const { values: cliOptions } = parseArgs({
     options: {
@@ -87,15 +113,12 @@ const serializeSnapshot = function ({ linterOptions, rules }) {
     ].join('\n');
 };
 
-const resolveSnapshot = async function (presetFile, extension) {
-    const presetUrl = pathToFileURL(path.join(PACKAGE_DIRECTORY, presetFile)).href;
-    const { default: presetConfig } = await import(presetUrl);
-
-    // "overrideConfigFile: true" ignores any eslint.config.js on disk, so that exactly the preset gets resolved
+const resolveSnapshot = async function (config, extension) {
+    // "overrideConfigFile: true" ignores any eslint.config.js on disk, so that exactly the given config gets resolved
     const eslint = new ESLint({
         cwd: PACKAGE_DIRECTORY,
         overrideConfigFile: true,
-        overrideConfig: presetConfig
+        overrideConfig: config
     });
 
     // The file doesn't need to exist, the config is resolved from its path only
@@ -132,13 +155,13 @@ const describeRuleChanges = function (expectedRules, actualRules) {
 };
 
 // One test per snapshot file
-for (const [presetFile, extensions] of Object.entries(SNAPSHOT_MATRIX)) {
+for (const { label, snapshotPrefix, loadConfig, extensions } of SNAPSHOT_MATRIX) {
     for (const extension of extensions) {
-        const snapshotName = `${path.basename(presetFile, '.js')}.${extension}.json`;
+        const snapshotName = `${snapshotPrefix}.${extension}.json`;
         const snapshotPath = path.join(SNAPSHOT_DIRECTORY, snapshotName);
 
-        test(`Resolved rules of ${presetFile} (.${extension}) match test/rules-snapshot/${snapshotName}`, async () => {
-            const actual = await resolveSnapshot(presetFile, extension);
+        test(`Resolved rules of ${label} (.${extension}) match test/rules-snapshot/${snapshotName}`, async () => {
+            const actual = await resolveSnapshot(await loadConfig(), extension);
 
             if (cliOptions.update) {
                 await writeFile(snapshotPath, serializeSnapshot(actual));
@@ -159,7 +182,7 @@ for (const [presetFile, extensions] of Object.entries(SNAPSHOT_MATRIX)) {
                 changeLines,
                 [],
                 [
-                    `Resolved rules changed for ${presetFile} (.${extension}):`,
+                    `Resolved rules changed for ${label} (.${extension}):`,
                     ...changeLines,
                     'Run "npm run test:rules:update" to accept them, then review the git diff before committing.'
                 ].join('\n')
