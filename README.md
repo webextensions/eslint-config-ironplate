@@ -112,3 +112,8 @@ export default [
     }
 ];
 ```
+
+Note: The Node.js configs also report `__dirname` / `__filename` in the files which ESLint treats as ES modules (`.js`,
+`.mjs`, `.ts`, `.mts`), since they exist only in CommonJS (use `import.meta.dirname` / `import.meta.filename`). If your
+`.js` / `.ts` files are CommonJS, turn the rule off for them, eg:
+`{ files: ['**/*.js'], rules: { 'no-restricted-globals': 'off' } }`.

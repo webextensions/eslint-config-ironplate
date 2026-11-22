@@ -224,6 +224,7 @@
         "no-prototype-builtins": [ 2 ],
         "no-redeclare": [ 0, { "builtinGlobals": true } ],
         "no-regex-spaces": [ 2 ],
+        "no-restricted-globals": [ 2, { "name": "__dirname", "message": "Use \"import.meta.dirname\" instead (\"__dirname\" is not available in ES modules)." }, { "name": "__filename", "message": "Use \"import.meta.filename\" instead (\"__filename\" is not available in ES modules)." } ],
         "no-self-assign": [ 2, { "props": true } ],
         "no-sequences": [ 2, { "allowInParentheses": true } ],
         "no-setter-return": [ 0 ],

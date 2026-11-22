@@ -57,6 +57,30 @@ const nodeConfigs = [
             // project's `settings: { n: { version } }`, the "engines.node" of the project's package.json, its
             // "devEngines.runtime", and finally ">=16.0.0".
         }
+    },
+
+    {
+        name: 'ironplate/node/esm-globals',
+
+        // The files which ESLint treats as ES modules by default (.cjs / .cts are CommonJS). Projects whose .js / .ts
+        // files are CommonJS (eg: `"type": "commonjs"`, or TypeScript compiled to CommonJS) can turn this rule off for
+        // those files.
+        files: ['**/*.js', '**/*.mjs', '**/*.mts', '**/*.ts'],
+
+        rules: {
+            // "__dirname" and "__filename" exist only in CommonJS modules
+            'no-restricted-globals': [
+                'error',
+                {
+                    name: '__dirname',
+                    message: 'Use "import.meta.dirname" instead ("__dirname" is not available in ES modules).'
+                },
+                {
+                    name: '__filename',
+                    message: 'Use "import.meta.filename" instead ("__filename" is not available in ES modules).'
+                }
+            ]
+        }
     }
 ];
 
