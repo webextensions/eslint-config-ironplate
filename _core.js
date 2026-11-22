@@ -275,10 +275,6 @@ const coreConfigs = [
                 checkTypeImports: true
             }],
 
-            // All imports before the other statements (turned off for test files, see "ironplate/core/import-x-tests")
-            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/first.md
-            'import-x/first': ['error'],
-
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-default-export.md
             'import-x/no-default-export': ['error'],
 
@@ -295,16 +291,21 @@ const coreConfigs = [
     },
 
     {
-        name: 'ironplate/core/import-x-tests',
+        name: 'ironplate/core/import-x-first',
 
-        files: ['**/*.spec.*', '**/*.test.*', '**/test/**'],
+        // Not for test files: they may deliberately run code before their imports, eg: Vitest's
+        // `vi.hoisted(() => vi.stubGlobal('ResizeObserver', ...));` or `vi.mock(...)` placed above the imports of the
+        // code under test. Vitest hoists those calls anyway, so reordering wouldn't change what runs, but the auto-fix
+        // of "import-x/first" would undo the deliberate (and more readable) layout.
+        // Uses "ignores" (rather than a "files" block for test files that turns the rule off), since in flat config,
+        // a "files" pattern like "**/*.test.*" would also make ESLint lint the matching files of any other type (eg:
+        // "x.test.ts" in a JavaScript-only project, or "x.test.tsx.snap").
+        ignores: ['**/*.spec.*', '**/*.test.*', '**/test/**'],
 
         rules: {
-            // Test files may deliberately run code before their imports, eg: Vitest's
-            // `vi.hoisted(() => vi.stubGlobal('ResizeObserver', ...));` or `vi.mock(...)` placed above the imports of
-            // the code under test. Vitest hoists those calls anyway, so reordering wouldn't change what runs, but the
-            // auto-fix of "import-x/first" would undo the deliberate (and more readable) layout.
-            'import-x/first': 'off'
+            // All imports before the other statements
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/first.md
+            'import-x/first': ['error']
         }
     },
 

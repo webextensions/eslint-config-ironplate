@@ -65,10 +65,12 @@ const nodeConfigs = [
     {
         name: 'ironplate/node/esm-globals',
 
-        // The files which ESLint treats as ES modules by default (.cjs / .cts are CommonJS). Projects whose .js / .ts
-        // files are CommonJS (eg: `"type": "commonjs"`, or TypeScript compiled to CommonJS) can turn this rule off for
-        // those files.
-        files: ['**/*.js', '**/*.mjs', '**/*.mts', '**/*.ts'],
+        // All the linted files except the CommonJS ones (.cjs / .cts): ESLint treats the others as ES modules by
+        // default. Projects whose .js / .ts files are CommonJS (eg: `"type": "commonjs"`, or TypeScript compiled to
+        // CommonJS) can turn this rule off for those files.
+        // Uses "ignores" (rather than "files"), since in flat config, a "files" pattern like "**/*.ts" would also make
+        // ESLint lint those files, eg: TypeScript files in a project using the JavaScript-only "node.js" preset.
+        ignores: ['**/*.cjs', '**/*.cts'],
 
         rules: {
             // "__dirname" and "__filename" exist only in CommonJS modules
