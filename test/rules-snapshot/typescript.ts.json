@@ -113,7 +113,7 @@
         "n/callback-return": [ 2, [ "resolve", "reject", "next", "res.status", "res.end", "res.send", "callback", "done" ] ],
         "n/no-exports-assign": [ 2 ],
         "n/no-missing-require": [ 2 ],
-        "n/no-unsupported-features/es-syntax": [ 2, { "version": ">=20" } ],
+        "n/no-unsupported-features/es-syntax": [ 2 ],
         "no-alert": [ 2 ],
         "no-array-constructor": [ 0 ],
         "no-async-promise-executor": [ 2 ],

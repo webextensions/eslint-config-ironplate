@@ -303,9 +303,8 @@ const thisConfig = [
             'n/no-exports-assign': 'error',
             'n/no-missing-require': ['error'],
 
-            'n/no-unsupported-features/es-syntax': ['error', {
-                version: '>=20'
-            }]
+            // Without a "version" option: it follows the project's Node.js version (see the comment in node.js)
+            'n/no-unsupported-features/es-syntax': ['error']
         }
     },
 

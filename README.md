@@ -64,3 +64,28 @@ export default [
 Note: Some other useful sets are `globals.nodeBuiltin` (Node.js ESM) and `globals.jest`. To apply different globals
 to different parts of the project, use multiple config objects scoped via `files`, eg:
 `{ files: ['**/*.test.js'], languageOptions: { globals: { ...globals.jest } } }`.
+
+## Supported Node.js version
+In the Node.js configs (`node.js`, `node-typescript.js`), the `n/no-unsupported-features/*` rules (`es-syntax`,
+`es-builtins`, `node-builtins`) report language features and Node.js APIs which are not available in the Node.js
+versions your project supports. These configs don't set a version for them, so they follow your project, in this
+order:
+- `settings: { n: { version } }` in your ESLint config, when set
+- otherwise the `engines.node` field of your `package.json` (then its `devEngines.runtime`)
+- otherwise `>=16.0.0`
+
+To pin the version explicitly (eg: when using `eslint --cache`, since a cached result doesn't get re-checked when only
+`package.json` changes), set it once:
+```js
+export default [
+    ...eslintConfigIronplateNode,
+
+    {
+        settings: {
+            n: {
+                version: '>=24.2.0'
+            }
+        }
+    }
+];
+```
