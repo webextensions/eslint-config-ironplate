@@ -275,8 +275,30 @@ const coreConfigs = [
                 checkTypeImports: true
             }],
 
+            // All imports before the other statements (turned off for test files, see "ironplate/core/import-x-tests")
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/first.md
+            'import-x/first': ['error'],
+
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-default-export.md
-            'import-x/no-default-export': ['error']
+            'import-x/no-default-export': ['error'],
+
+            // eg: `import x from 'y';` rather than `import { default as x } from 'y';`
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-named-default.md
+            'import-x/no-named-default': ['error']
+        }
+    },
+
+    {
+        name: 'ironplate/core/import-x-tests',
+
+        files: ['**/*.spec.*', '**/*.test.*', '**/test/**'],
+
+        rules: {
+            // Test files may deliberately run code before their imports, eg: Vitest's
+            // `vi.hoisted(() => vi.stubGlobal('ResizeObserver', ...));` or `vi.mock(...)` placed above the imports of
+            // the code under test. Vitest hoists those calls anyway, so reordering wouldn't change what runs, but the
+            // auto-fix of "import-x/first" would undo the deliberate (and more readable) layout.
+            'import-x/first': 'off'
         }
     },
 
