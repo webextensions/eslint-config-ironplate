@@ -50,7 +50,9 @@ const cacheUnsafeRules = Object.freeze({
 
         // `settings: { 'react-x': { version: '19.2.0' } }`: otherwise ("detect"), read from the installed "react"
         // package. These rules only report for React versions at or above a threshold (React 18 for "dom-no-hydrate"
-        // and "dom-no-render", React 19 for the others).
+        // and "dom-no-render", React 19 for the others). The React configs pin it to the installed version (see
+        // resolveReactVersion() in _react.js), so it stays 'detect' only when "react" doesn't resolve from the
+        // working directory.
         'react-x.version': Object.freeze([
             '@eslint-react/dom-no-hydrate',
             '@eslint-react/dom-no-render',

@@ -72,9 +72,8 @@ runs (Node.js, browser, tests etc.). Without declaring them, the `no-undef` rule
 Declare the globals your project runs under via the `globals` package (it is already available as a peerDependency
 of this package):
 ```js
-import globals from 'globals';
-
 import eslintConfigIronplateNode from 'eslint-config-ironplate/node.js';
+import globals from 'globals';
 
 export default [
     ...eslintConfigIronplateNode,
@@ -93,6 +92,13 @@ export default [
 Note: Some other useful sets are `globals.nodeBuiltin` (Node.js ESM) and `globals.jest`. To apply different globals
 to different parts of the project, use multiple config objects scoped via `files`, eg:
 `{ files: ['**/*.test.js'], languageOptions: { globals: { ...globals.jest } } }`.
+
+## Import style
+All the configs enforce one import style, autofixable via `eslint --fix` (except `import-x/no-namespace`):
+- `simple-import-sort/imports` and `simple-import-sort/exports`: sorted (and grouped) import / export statements
+- `import-newlines/enforce` with `{ items: 1 }`: each imported / exported member on its own line once there is more
+  than one
+- `import-x/no-namespace`: no `import * as ns`, destructure the named members instead
 
 ## Supported Node.js version
 In the Node.js configs (`node.js`, `node-typescript.js`, or the `node` feature of `createIronplateConfig()`), the
@@ -136,3 +142,8 @@ cacheUnsafeRules.always;                                 // Unsafe for every pro
 cacheUnsafeRules.unlessSettingPinned['n.version'];       // Safe once `settings: { n: { version } }` is set
 cacheUnsafeRules.unlessSettingPinned['react-x.version']; // Safe once `settings: { 'react-x': { version } }` is set
 ```
+
+The React configs already set `settings['react-x'].version`: to the version of the `react` package installed for the
+working directory (resolved when the config loads, the same way `@eslint-react`'s `'detect'` resolves it), so a React
+upgrade changes the resolved config and invalidates the cache. When `react` doesn't resolve, the setting stays
+`'detect'`, which counts as not pinned.

@@ -11,7 +11,10 @@
 //         ...(await createIronplateConfig({ node: true, typescript: true }))
 //     ];
 
-import { composeIronplateConfig, validateFeatures } from './_compose-ironplate-config.js';
+import {
+    composeIronplateConfig,
+    validateFeatures
+} from './_compose-ironplate-config.js';
 
 const OPTIONAL_PEER_DEPENDENCIES = {
     react: ['@eslint-react/eslint-plugin', 'eslint-plugin-react-hooks', 'eslint-plugin-react-refresh'],

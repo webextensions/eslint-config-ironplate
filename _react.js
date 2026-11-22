@@ -1,11 +1,32 @@
 // NOTE: The react-family packages are optional peerDependencies (npm doesn't auto-install them), hence this
 //       repository also lists them under its own devDependencies (otherwise these imports wouldn't resolve here)
 
+import { createRequire } from 'node:module';
+import path from 'node:path';
+
 import pluginEslintReact from '@eslint-react/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
-import { reactFileGlobs, typeScriptFileGlobs } from './_file-globs.js';
+import {
+    reactFileGlobs,
+    typeScriptFileGlobs
+} from './_file-globs.js';
+
+// The installed React version, for the "react-x.version" setting of @eslint-react. Its recommended config sets
+// 'detect', which makes the rules read the installed "react" package while linting - an input from outside the linted
+// file, so `eslint --cache` could return stale results after a React upgrade (see _cache-unsafe-rules.js). Resolving
+// it here, the same way @eslint-react resolves 'detect' (`require('react').version` from the current working
+// directory), puts the value into the resolved config, which the cache does key on. Falls back to 'detect' when
+// "react" doesn't resolve.
+const resolveReactVersion = function () {
+    try {
+        const { version } = createRequire(process.cwd() + path.sep)('react');
+        return typeof version === 'string' ? version : 'detect';
+    } catch {
+        return 'detect';
+    }
+};
 
 // The React-specific config objects (the "react" feature of createIronplateConfig()). Their "files" get extended to
 // the TypeScript extensions by createReactConfigs() when the "typescript" feature is also selected.
@@ -72,6 +93,13 @@ const reactConfigs = [
         // "@eslint-react/recommended" (re-scoped "files" and the rule overrides below)
         name: `ironplate/react/${pluginEslintReact.configs.recommended.name}`,
         files: reactFileGlobs, // must stay after the spread (so the recommended config can't clobber it)
+        settings: {
+            ...pluginEslintReact.configs.recommended.settings,
+            'react-x': {
+                ...pluginEslintReact.configs.recommended.settings?.['react-x'],
+                version: resolveReactVersion()
+            }
+        },
         rules: {
             ...pluginEslintReact.configs.recommended.rules,
 

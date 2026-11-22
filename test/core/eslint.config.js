@@ -1,6 +1,5 @@
-import globals from 'globals';
-
 import eslintIronplateConfig from 'eslint-config-ironplate';
+import globals from 'globals';
 
 const config = [
     ...eslintIronplateConfig,

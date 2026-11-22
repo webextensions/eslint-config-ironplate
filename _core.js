@@ -13,11 +13,15 @@
 //     Create "eslint-config-ironplate/base.js" which doesn't use any plugins
 
 import eslintJs from '@eslint/js';
-
 import pluginStylistic from '@stylistic/eslint-plugin';
-import pluginImportX, { createNodeResolver, flatConfigs as pluginImportXFlatConfigs } from 'eslint-plugin-import-x';
+import pluginImportNewlines from 'eslint-plugin-import-newlines';
+import pluginImportX, {
+    createNodeResolver,
+    flatConfigs as pluginImportXFlatConfigs
+} from 'eslint-plugin-import-x';
 import pluginN from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
+import pluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 
 import { reactFileGlobs } from './_file-globs.js';
@@ -286,7 +290,31 @@ const coreConfigs = [
 
             // eg: `import x from 'y';` rather than `import { default as x } from 'y';`
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-named-default.md
-            'import-x/no-named-default': ['error']
+            'import-x/no-named-default': ['error'],
+
+            // eg: `import { readFile } from 'node:fs/promises';` rather than `import * as fs from 'node:fs/promises';`
+            // (destructure the named members instead of importing a namespace object)
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-namespace.md
+            'import-x/no-namespace': ['error']
+        }
+    },
+
+    {
+        name: 'ironplate/core/import-style',
+
+        plugins: {
+            'import-newlines': pluginImportNewlines,
+            'simple-import-sort': pluginSimpleImportSort
+        },
+        rules: {
+            // `items: 1`: each imported / exported member goes on its own line as soon as there is more than one
+            // https://github.com/SeinopSys/eslint-plugin-import-newlines#readme
+            'import-newlines/enforce': ['error', { items: 1 }],
+
+            // Sorted (and grouped) import and export statements, autofixable
+            // https://github.com/lydell/eslint-plugin-simple-import-sort#readme
+            'simple-import-sort/exports': ['error'],
+            'simple-import-sort/imports': ['error']
         }
     },
 
@@ -332,7 +360,8 @@ const coreConfigs = [
                     'res.send',
 
                     'callback',
-                    'done'
+                    'done',
+                    'exitWithError'
                 ]
             ],
 

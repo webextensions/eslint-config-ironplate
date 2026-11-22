@@ -15,7 +15,10 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { test } from 'node:test';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import {
+    fileURLToPath,
+    pathToFileURL
+} from 'node:url';
 
 import { ESLint } from 'eslint';
 
@@ -139,6 +142,28 @@ const CANARIES = [
         filenames: ['canary.js', 'canary.ts'],
         code: 'import { something } from \'./does-not-exist.js\';\n\nexport const value = something;\n',
         expect: ['import-x/no-unresolved']
+    },
+    {
+        name: 'import-x/no-namespace',
+        filenames: ['canary.js', 'canary.ts'],
+        code: 'import * as target from \'./targetJs.js\';\n\nexport const value = target.realNamedJs;\n',
+        expect: ['import-x/no-namespace']
+    },
+
+    // import-newlines
+    {
+        name: 'import-newlines/enforce (more than one member on one line)',
+        filenames: ['canary.js', 'canary.ts'],
+        code: 'import { readFile, writeFile } from \'node:fs/promises\';\n\nexport const fileFunctions = [readFile, writeFile];\n',
+        expect: ['import-newlines/enforce']
+    },
+
+    // simple-import-sort
+    {
+        name: 'simple-import-sort/imports (local import before a package import)',
+        filenames: ['canary.js', 'canary.ts'],
+        code: 'import { realNamedJs } from \'./targetJs.js\';\nimport path from \'node:path\';\n\nexport const value = path.join(String(realNamedJs));\n',
+        expect: ['simple-import-sort/imports']
     },
 
     // n

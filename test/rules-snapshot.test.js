@@ -23,10 +23,16 @@
 // of "import-x/resolver-next").
 
 import assert from 'node:assert/strict';
-import { readFile, writeFile } from 'node:fs/promises';
+import {
+    readFile,
+    writeFile
+} from 'node:fs/promises';
 import path from 'node:path';
 import { test } from 'node:test';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import {
+    fileURLToPath,
+    pathToFileURL
+} from 'node:url';
 import { parseArgs } from 'node:util';
 
 import { ESLint } from 'eslint';

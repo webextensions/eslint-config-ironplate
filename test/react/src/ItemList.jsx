@@ -1,7 +1,10 @@
 // NOTE: This file intentionally uses the ".jsx" extension to prove that "eslint ." discovers ".jsx" files (via the
 //       "files" entry in the "eslint-config-ironplate/react.js" config)
 
-import { useEffect, useState } from 'react';
+import {
+    useEffect,
+    useState
+} from 'react';
 
 const items = ['one', 'two', 'three'];
 
