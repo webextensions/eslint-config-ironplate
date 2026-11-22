@@ -69,7 +69,35 @@ const typeScriptDelta = [
             '@typescript-eslint/ban-ts-comment': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-require-imports': 'off',
-            '@typescript-eslint/no-this-alias': 'off'
+            '@typescript-eslint/no-this-alias': 'off',
+
+            // Import rules that are redundant (and expensive) for TypeScript files. All six rely on the "export
+            // map" of "eslint-plugin-import-x": for every import, it resolves the target module, parses it and
+            // records what it exports. That parsing makes them the slowest rules of this config (in one consumer
+            // project, they alone took the uncached part of a full-repo lint run from ~7s to ~17s). For TypeScript
+            // files, the cost buys nothing:
+            //     * "import-x" builds export maps only for the extensions listed in its "import-x/extensions"
+            //       setting, which defaults to .js, .mjs and .cjs. So in a TypeScript file, an import of another
+            //       .ts/.tsx/.cts/.mts module is not checked at all, eg:
+            //           import { notExported } from './utils.ts'; // Not reported by "import-x/named"
+            //     * TypeScript reports these mistakes itself (and for .ts targets too):
+            //           "import-x/named"     -> TS2614: Module './x' has no exported member 'y'
+            //           "import-x/default"   -> TS1192: Module './x' has no default export
+            //           "import-x/namespace" -> TS2339: Property 'y' does not exist on type 'typeof import(...)'
+            //           "import-x/export"    -> TS2323 / TS2484: Cannot redeclare / conflicting exported names
+            //       (eslint-plugin-import-x's own "typescript" config turns "import-x/named" off for this reason)
+            //     * "no-named-as-default" and "no-named-as-default-member" have no TypeScript equivalent, but they
+            //       are style hints rather than bug detectors (eg: prefer `import { Pool } from 'pg'` over
+            //       `import pg from 'pg'; new pg.Pool()`), and they alone keep most of the export-map cost
+            // Scoped to TypeScript files only: plain .js/.cjs/.mjs files keep these rules, since TypeScript checks
+            // JavaScript files only when the project enables "checkJs". Projects that do enable it can turn these
+            // rules off for their JavaScript files as well.
+            'import-x/default': 'off',
+            'import-x/export': 'off',
+            'import-x/named': 'off',
+            'import-x/namespace': 'off',
+            'import-x/no-named-as-default': 'off',
+            'import-x/no-named-as-default-member': 'off'
         }
     },
 
