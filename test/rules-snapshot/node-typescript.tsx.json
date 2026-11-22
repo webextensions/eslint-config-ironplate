@@ -45,7 +45,7 @@
         "@stylistic/no-floating-decimal": [ 2 ],
         "@stylistic/no-mixed-operators": [ 2, { "groups": [ [ "+", "-", "*", "/", "%", "**" ], [ "&", "|", "^", "~", "<<", ">>", ">>>" ], [ "==", "!=", "===", "!==", ">", ">=", "<", "<=" ], [ "&&", "||" ], [ "in", "instanceof" ] ], "allowSamePrecedence": false } ],
         "@stylistic/no-mixed-spaces-and-tabs": [ 2 ],
-        "@stylistic/no-multi-spaces": [ 0, { "ignoreEOLComments": false, "includeTabs": true } ],
+        "@stylistic/no-multi-spaces": [ 2, { "ignoreEOLComments": true, "includeTabs": true, "exceptions": { "ImportAttribute": false, "ObjectPattern": true, "Property": false } } ],
         "@stylistic/no-multiple-empty-lines": [ 2, { "max": 1, "maxBOF": 0, "maxEOF": 1 } ],
         "@stylistic/no-tabs": [ 2, { "allowIndentationTabs": false } ],
         "@stylistic/no-trailing-spaces": [ 2, { "skipBlankLines": false, "ignoreComments": false } ],

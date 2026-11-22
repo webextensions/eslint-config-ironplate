@@ -174,18 +174,19 @@ const coreConfigs = [
             '@stylistic/no-extra-semi': 'error',
             '@stylistic/no-mixed-operators': ['error', { allowSamePrecedence: false }],
 
-            // '@stylistic/no-multi-spaces': [
-            //     'error',
-            //     {
-            //         'ignoreEOLComments': true,
-            //         'exceptions': {
-            //             // 'BinaryExpression': true,
-            //             'Property': true,
-            //             'VariableDeclarator': true
-            //         }
-            //     }
-            // ],
-            '@stylistic/no-multi-spaces': 'off',
+            // https://eslint.style/rules/no-multi-spaces
+            // Allows aligning end-of-line comments and the values of destructuring patterns
+            '@stylistic/no-multi-spaces': [
+                'error',
+                {
+                    ignoreEOLComments: true,
+                    exceptions: {
+                        ImportAttribute: false,
+                        ObjectPattern: true,
+                        Property: false
+                    }
+                }
+            ],
 
             '@stylistic/no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
             '@stylistic/no-trailing-spaces': 'error',

@@ -4,7 +4,7 @@
 // https://stackoverflow.com/questions/5412761/using-colors-with-printf/5413029#5413029
 // https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux/5947802#5947802
 const NORMAL = '\u{1B}[0m';    // NORMAL=$(tput sgr0)
-const BLUE   = '\u{1B}[0;34m'; //   BLUE=$(tput setaf 4)
+const BLUE = '\u{1B}[0;34m'; //   BLUE=$(tput setaf 4)
 
 const lines = [
     '',

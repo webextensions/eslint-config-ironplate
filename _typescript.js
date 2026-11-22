@@ -35,7 +35,7 @@ const typeScriptConfigs = [
                 'error',
                 {
                     singleline: { delimiter: 'semi', requireLast: false },
-                    multiline:  { delimiter: 'semi', requireLast: false }
+                    multiline: { delimiter: 'semi', requireLast: false }
                 }
             ],
             '@stylistic/type-annotation-spacing': [
