@@ -4,7 +4,9 @@ Shareable ESLint configuration
 ## Installation
 `$ npm install --save-dev eslint-config-ironplate`
 
-When you run this installation command, you will also see a guide about installing peerDependencies.
+Also install its peerDependencies (and add them to your project's `package.json`):
+- To list them: `$ npm info "eslint-config-ironplate" peerDependencies`
+- To install them: `$ npx install-peerdeps --dev eslint-config-ironplate`
 
 Note: The react-family peerDependencies (`@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks`,
 `eslint-plugin-react-refresh`) are optional and only needed when using the react configs. Similarly, `typescript`

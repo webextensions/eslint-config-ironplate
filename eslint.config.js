@@ -23,7 +23,7 @@ const config = [
     },
 
     {
-        files: ['*.js', '*.mjs', 'scripts/**/*.js', 'test/*.js'],
+        files: ['*.js', '*.mjs', 'test/*.js'],
         languageOptions: {
             globals: {
                 ...globals.nodeBuiltin
