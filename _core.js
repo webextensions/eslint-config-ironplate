@@ -282,6 +282,12 @@ const coreConfigs = [
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-default-export.md
             'import-x/no-default-export': ['error'],
 
+            // Imports of packages which the closest package.json doesn't list (eg: a package which is installed only as
+            // a dependency of another package). Packages listed under "devDependencies", "peerDependencies" and
+            // "optionalDependencies" are allowed as well.
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-extraneous-dependencies.md
+            'import-x/no-extraneous-dependencies': ['error'],
+
             // eg: `import x from 'y';` rather than `import { default as x } from 'y';`
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-named-default.md
             'import-x/no-named-default': ['error']

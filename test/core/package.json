@@ -10,7 +10,8 @@
     "author": "",
     "license": "MIT",
     "devDependencies": {
-        "eslint": "*"
+        "eslint": "*",
+        "globals": "*"
     },
     "dependencies": {
         "eslint-config-ironplate": "file:../../"

@@ -72,6 +72,7 @@
         "import-x/namespace": [ 2 ],
         "import-x/no-default-export": [ 2 ],
         "import-x/no-duplicates": [ 1 ],
+        "import-x/no-extraneous-dependencies": [ 2 ],
         "import-x/no-named-as-default": [ 1 ],
         "import-x/no-named-as-default-member": [ 1 ],
         "import-x/no-named-default": [ 2 ],
