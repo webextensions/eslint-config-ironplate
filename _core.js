@@ -334,6 +334,7 @@ const coreConfigs = [
             ...pluginUnicorn.configs.recommended.rules,
 
             'unicorn/catch-error-name': 'off',
+            'unicorn/consistent-boolean-name': 'off',
             'unicorn/consistent-function-scoping': 'off',
             'unicorn/custom-error-definition': 'error',
             'unicorn/empty-brace-spaces': 'off',
@@ -358,6 +359,7 @@ const coreConfigs = [
             'unicorn/no-abusive-eslint-disable': 'error',
             'unicorn/no-array-reverse': 'off',
             'unicorn/no-await-expression-member': 'off',
+            'unicorn/no-break-in-nested-loop': 'off',
             'unicorn/no-console-spaces': 'error',
             'unicorn/no-for-loop': 'error',
             'unicorn/no-immediate-mutation': 'off',
@@ -368,9 +370,11 @@ const coreConfigs = [
             'unicorn/no-null': 'off',
             'unicorn/no-process-exit': 'off',
             'unicorn/no-this-assignment': 'off',
+            'unicorn/no-top-level-assignment-in-function': 'off',
             'unicorn/no-typeof-undefined': 'off',
             'unicorn/no-unreadable-array-destructuring': 'error',
             'unicorn/no-unused-properties': 'error',
+            'unicorn/no-useless-else': 'off',
             'unicorn/no-useless-undefined': 'off',
             'unicorn/no-zero-fractions': 'error',
             'unicorn/number-literal-case': 'error',
@@ -391,6 +395,7 @@ const coreConfigs = [
             'unicorn/prefer-ternary': 'off',
             'unicorn/prefer-top-level-await': 'off',
             'unicorn/prefer-type-error': 'error',
+            'unicorn/require-array-sort-compare': 'off',
             'unicorn/throw-new-error': 'error'
         }
     }
