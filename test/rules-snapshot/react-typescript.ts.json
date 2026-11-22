@@ -239,6 +239,7 @@
         "no-useless-escape": [ 2, { "allowRegexCharacters": [] } ],
         "no-var": [ 2 ],
         "no-with": [ 0 ],
+        "object-shorthand": [ 2, "properties" ],
         "prefer-const": [ 2, { "destructuring": "any", "ignoreReadBeforeAssign": false } ],
         "prefer-promise-reject-errors": [ 2, { "allowEmptyReject": false } ],
         "prefer-regex-literals": [ 2, { "disallowRedundantWrapping": false } ],

@@ -85,6 +85,7 @@ const coreConfigs = [
             'no-unused-vars': 'error',
             'no-use-before-define': ['error', { functions: false, classes: true }],
             'no-var': ['error'],
+            'object-shorthand': ['error', 'properties'], // eg: `{ name }` rather than `{ name: name }` (methods aren't affected)
             'prefer-const': ['error'],
             'prefer-promise-reject-errors': 'error',
             'prefer-regex-literals': 'error',
