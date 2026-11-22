@@ -172,6 +172,7 @@
         "n/no-extraneous-require": [ 0 ],
         "n/no-missing-import": [ 0 ],
         "n/no-missing-require": [ 2 ],
+        "n/no-path-concat": [ 2 ],
         "n/no-process-exit": [ 2 ],
         "n/no-unpublished-import": [ 0 ],
         "n/no-unpublished-require": [ 0 ],

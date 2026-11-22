@@ -44,6 +44,9 @@ const nodeConfigs = [
             // Ref: https://github.com/eslint-community/eslint-plugin-n/issues/349#issuecomment-2393189937
             'n/no-missing-import': 'off',
 
+            // eg: `path.join(__dirname, 'x')` rather than `__dirname + '/x'`
+            'n/no-path-concat': ['error'],
+
             'n/no-unpublished-import': 'off',
             'n/no-unpublished-require': 'off',
 
