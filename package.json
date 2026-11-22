@@ -16,6 +16,15 @@
         "./react-typescript.js": "./react-typescript.js",
         "./package.json": "./package.json"
     },
+    "files": [
+        "_*.js",
+        "index.js",
+        "node.js",
+        "react.js",
+        "typescript.js",
+        "node-typescript.js",
+        "react-typescript.js"
+    ],
     "scripts": {
         "eslint": "eslint .",
         "postversion": "git push --follow-tags",
