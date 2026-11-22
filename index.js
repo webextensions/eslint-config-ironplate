@@ -17,6 +17,9 @@ const thisConfig = [
     // }
 ];
 
+// The rules whose result can change without the linted file changing (unsafe for `eslint --cache`), see
+// _cache-unsafe-rules.js
+export { cacheUnsafeRules } from './_cache-unsafe-rules.js';
 // createIronplateConfig() only loads the optional peerDependencies (React / TypeScript) on demand, so exporting it
 // from here keeps this entry point usable without them
 export { createIronplateConfig } from './_create-ironplate-config.js';

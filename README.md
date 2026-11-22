@@ -117,3 +117,15 @@ Note: The Node.js configs also report `__dirname` / `__filename` in the files wh
 `.mjs`, `.ts`, `.mts`), since they exist only in CommonJS (use `import.meta.dirname` / `import.meta.filename`). If your
 `.js` / `.ts` files are CommonJS, turn the rule off for them, eg:
 `{ files: ['**/*.js'], rules: { 'no-restricted-globals': 'off' } }`.
+
+## Rules unsafe for `eslint --cache`
+`eslint --cache` re-checks a file only when the file (or the config) changes. Some rules also read other inputs (other
+files, `package.json`, installed packages), so their cached result can go stale. The `cacheUnsafeRules` export lists
+them, eg: to run those rules without the cache and the rest with it:
+```js
+import { cacheUnsafeRules } from 'eslint-config-ironplate';
+
+cacheUnsafeRules.always;                                 // Unsafe for every project
+cacheUnsafeRules.unlessSettingPinned['n.version'];       // Safe once `settings: { n: { version } }` is set
+cacheUnsafeRules.unlessSettingPinned['react-x.version']; // Safe once `settings: { 'react-x': { version } }` is set
+```
