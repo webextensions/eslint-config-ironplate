@@ -37,6 +37,10 @@ export default [
 Note: For the TypeScript configs, no `languageOptions.parser` setup is needed - the parser comes bundled (via the
 `typescript-eslint` package).
 
+Note: `typescript-eslint` (as of v8.73) supports `typescript` versions `>=4.8.4 <6.1.0`, so with the TypeScript configs,
+use `typescript` 6.0.x (eg: `$ npm install --save-dev typescript@~6.0.0`) until `typescript-eslint` supports
+TypeScript 7.
+
 ## Config factory
 The presets above are fixed combinations of three features: `node`, `react` and `typescript`. To pick any
 combination (including ones without a preset file, eg: Node.js + React + TypeScript in one package), use the async
