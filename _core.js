@@ -349,6 +349,8 @@ const thisConfig = [
                 }
             ],
             'unicorn/import-style': 'off',
+            // Allows short / abbreviated names (eg: `err`, `props`, `i`)
+            'unicorn/name-replacements': 'off',
             'unicorn/new-for-builtins': 'error',
             'unicorn/no-abusive-eslint-disable': 'error',
             'unicorn/no-array-reverse': 'off',
@@ -386,7 +388,6 @@ const thisConfig = [
             'unicorn/prefer-ternary': 'off',
             'unicorn/prefer-top-level-await': 'off',
             'unicorn/prefer-type-error': 'error',
-            'unicorn/prevent-abbreviations': 'off',
             'unicorn/throw-new-error': 'error'
         }
     }
