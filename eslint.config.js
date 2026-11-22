@@ -5,7 +5,9 @@ import eslintIronplateConfigNode from './node.js';
 const config = [
     {
         ignores: [
-            'test/'
+            // The fixture projects ("test/<preset>/") have their own ESLint config and node_modules (they are linted
+            // by "npm run test:data"); the test files directly under "test/" are linted like the rest of this package
+            'test/*/'
         ]
     },
 
@@ -21,7 +23,7 @@ const config = [
     },
 
     {
-        files: ['*.js', '*.mjs', 'scripts/**/*.js'],
+        files: ['*.js', '*.mjs', 'scripts/**/*.js', 'test/*.js'],
         languageOptions: {
             globals: {
                 ...globals.nodeBuiltin
