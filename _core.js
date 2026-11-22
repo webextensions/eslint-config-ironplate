@@ -355,7 +355,6 @@ const thisConfig = [
             'unicorn/no-await-expression-member': 'off',
             'unicorn/no-console-spaces': 'error',
             'unicorn/no-for-loop': 'error',
-            'unicorn/no-hex-escape': 'error',
             'unicorn/no-immediate-mutation': 'off',
             'unicorn/no-instanceof-builtins': 'error',
             'unicorn/no-lonely-if': 'off',

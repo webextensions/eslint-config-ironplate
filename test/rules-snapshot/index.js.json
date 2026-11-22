@@ -272,7 +272,6 @@
         "unicorn/no-for-each": [ 2 ],
         "unicorn/no-for-loop": [ 2 ],
         "unicorn/no-global-object-property-assignment": [ 2 ],
-        "unicorn/no-hex-escape": [ 2 ],
         "unicorn/no-immediate-mutation": [ 0, { "checkCollections": true, "checkConditionals": false } ],
         "unicorn/no-impossible-length-comparison": [ 2 ],
         "unicorn/no-incomplete-accessor-override": [ 2 ],
