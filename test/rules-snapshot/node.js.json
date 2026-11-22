@@ -139,7 +139,7 @@
         "no-prototype-builtins": [ 2 ],
         "no-redeclare": [ 2, { "builtinGlobals": true } ],
         "no-regex-spaces": [ 2 ],
-        "no-restricted-globals": [ 2, { "name": "__dirname", "message": "Use \"import.meta.dirname\" instead (\"__dirname\" is not available in ES modules)." }, { "name": "__filename", "message": "Use \"import.meta.filename\" instead (\"__filename\" is not available in ES modules)." } ],
+        "no-restricted-globals": [ 2, { "name": "__dirname", "message": "Not available in ES modules. Use \"import.meta.dirname\" (or, for Node.js < 22.16, \"path.dirname(fileURLToPath(import.meta.url))\")." }, { "name": "__filename", "message": "Not available in ES modules. Use \"import.meta.filename\" (or, for Node.js < 22.16, \"fileURLToPath(import.meta.url)\")." } ],
         "no-self-assign": [ 2, { "props": true } ],
         "no-sequences": [ 2, { "allowInParentheses": true } ],
         "no-setter-return": [ 2 ],

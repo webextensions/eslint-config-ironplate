@@ -121,7 +121,8 @@ export default [
 
 Note: The Node.js configs also report `__dirname` / `__filename` in all the linted files except `.cjs` / `.cts` (ESLint
 treats the others as ES modules), since they exist only in CommonJS (use `import.meta.dirname` /
-`import.meta.filename`). If your `.js` / `.ts` files are CommonJS, turn the rule off for them, eg:
+`import.meta.filename`, or for Node.js < 22.16, `path.dirname(fileURLToPath(import.meta.url))` /
+`fileURLToPath(import.meta.url)`). If your `.js` / `.ts` files are CommonJS, turn the rule off for them, eg:
 `{ files: ['**/*.js'], rules: { 'no-restricted-globals': 'off' } }`.
 
 ## Rules unsafe for `eslint --cache`

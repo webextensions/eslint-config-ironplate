@@ -73,16 +73,18 @@ const nodeConfigs = [
         ignores: ['**/*.cjs', '**/*.cts'],
 
         rules: {
-            // "__dirname" and "__filename" exist only in CommonJS modules
+            // "__dirname" and "__filename" exist only in CommonJS modules. The messages also name the fallbacks, since
+            // "import.meta.dirname" / "import.meta.filename" are stable only from Node.js 22.16.0 (and below that,
+            // "n/no-unsupported-features/node-builtins" reports them).
             'no-restricted-globals': [
                 'error',
                 {
                     name: '__dirname',
-                    message: 'Use "import.meta.dirname" instead ("__dirname" is not available in ES modules).'
+                    message: 'Not available in ES modules. Use "import.meta.dirname" (or, for Node.js < 22.16, "path.dirname(fileURLToPath(import.meta.url))").'
                 },
                 {
                     name: '__filename',
-                    message: 'Use "import.meta.filename" instead ("__filename" is not available in ES modules).'
+                    message: 'Not available in ES modules. Use "import.meta.filename" (or, for Node.js < 22.16, "fileURLToPath(import.meta.url)").'
                 }
             ]
         }
