@@ -20,6 +20,18 @@ import pluginN from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 
+const isJsxStylisticRule = function (ruleId) {
+    return ruleId.startsWith('@stylistic/jsx-');
+};
+
+const stylisticRecommendedRules = pluginStylistic.configs['recommended'].rules;
+const stylisticRecommendedRulesWithoutJsx = Object.fromEntries(
+    Object.entries(stylisticRecommendedRules).filter(([ruleId]) => !isJsxStylisticRule(ruleId))
+);
+const stylisticRecommendedJsxRules = Object.fromEntries(
+    Object.entries(stylisticRecommendedRules).filter(([ruleId]) => isJsxStylisticRule(ruleId))
+);
+
 // Every config object carries a "name" ("ironplate/<module>/<topic>"), the standard flat-config label: it shows up in
 // "npx @eslint/config-inspector" and in some ESLint error messages, and test/config-names.test.js uses it to catch a
 // config object being applied twice (eg: by spreading two full presets, which would silently revert the overrides in
@@ -100,17 +112,10 @@ const thisConfig = [
         },
 
         rules: {
-            ...pluginStylistic.configs['recommended'].rules, // https://eslint.style/rules
-
-            // TODO: FIXME: Move these rules to `react.js` configuration file. In an attempt to do that, somehow it
-            //              didn't get applied properly and lead to some indentation related ESLint errors.
-            // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
             // https://eslint.style/rules
-            '@stylistic/jsx-curly-brace-presence': 'off',
-            '@stylistic/jsx-indent-props': ['error', 4],
-            '@stylistic/jsx-one-expression-per-line': 'off',
-            '@stylistic/jsx-tag-spacing': 'off',
-            '@stylistic/jsx-wrap-multilines': 'off',
+            // The "@stylistic/jsx-*" rules of the recommended set are applied only to the files which can contain JSX
+            // instead (see createJsxStylisticConfig() below)
+            ...stylisticRecommendedRulesWithoutJsx,
 
             // https://www.npmjs.com/package/@stylistic/eslint-plugin-js
             // https://eslint.style/rules
@@ -391,4 +396,28 @@ const thisConfig = [
     }
 ];
 
+// The "@stylistic/jsx-*" rules, for the given files which can contain JSX: react.js / react-typescript.js apply it to
+// the React files, typescript.js to the .tsx files (the TypeScript parser always parses JSX in .tsx files). Kept here
+// (rather than in react.js), because "@stylistic/eslint-plugin" is a required peerDependency, while the React plugins
+// are optional.
+const createJsxStylisticConfig = function ({ name, files }) {
+    return {
+        name,
+
+        files,
+
+        rules: {
+            ...stylisticRecommendedJsxRules,
+
+            // https://eslint.style/rules
+            '@stylistic/jsx-curly-brace-presence': 'off',
+            '@stylistic/jsx-indent-props': ['error', 4],
+            '@stylistic/jsx-one-expression-per-line': 'off',
+            '@stylistic/jsx-tag-spacing': 'off',
+            '@stylistic/jsx-wrap-multilines': 'off'
+        }
+    };
+};
+
+export { createJsxStylisticConfig };
 export default thisConfig;

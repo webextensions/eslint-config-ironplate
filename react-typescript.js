@@ -1,4 +1,4 @@
-import coreConfig from './_core.js';
+import coreConfig, { createJsxStylisticConfig } from './_core.js';
 import { reactDelta, reactFileGlobs } from './react.js';
 import { typeScriptDelta, typeScriptFileGlobs } from './typescript.js';
 
@@ -19,7 +19,11 @@ const thisConfig = [
         };
     }),
 
-    ...typeScriptDelta
+    ...typeScriptDelta,
+
+    // The JSX stylistic rules for the React files (not re-scoped like the React delta above: .ts files can't contain
+    // JSX, and the .tsx files get them from the TypeScript delta)
+    createJsxStylisticConfig({ name: 'ironplate/react/stylistic-jsx', files: reactFileGlobs })
 ];
 
 export default thisConfig;

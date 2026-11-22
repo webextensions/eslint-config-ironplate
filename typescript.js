@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 
 import { createNodeResolver } from 'eslint-plugin-import-x';
 
-import coreConfig from './_core.js';
+import coreConfig, { createJsxStylisticConfig } from './_core.js';
 
 // TODO: Also look into https://www.npmjs.com/package/eslint-import-resolver-typescript if that can be helpful in some cases
 
@@ -100,6 +100,9 @@ const typeScriptDelta = [
             'import-x/no-named-as-default-member': 'off'
         }
     },
+
+    // The TypeScript parser always parses JSX in .tsx files, so they get the JSX stylistic rules (with or without React)
+    createJsxStylisticConfig({ name: 'ironplate/typescript/stylistic-jsx', files: ['**/*.tsx'] }),
 
     {
         name: 'ironplate/typescript/import-x',

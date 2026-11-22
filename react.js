@@ -5,7 +5,7 @@ import pluginEslintReact from '@eslint-react/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
-import coreConfig from './_core.js';
+import coreConfig, { createJsxStylisticConfig } from './_core.js';
 
 const reactFileGlobs = [
     '**/*.cjs',
@@ -99,7 +99,8 @@ const reactDelta = [
 
 const thisConfig = [
     ...coreConfig,
-    ...reactDelta
+    ...reactDelta,
+    createJsxStylisticConfig({ name: 'ironplate/react/stylistic-jsx', files: reactFileGlobs })
 ];
 
 export { reactDelta, reactFileGlobs };
