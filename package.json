@@ -21,9 +21,10 @@
         "postinstall": "node ./scripts/postinstall.js",
         "postversion": "git push --follow-tags",
         "test:data": "npm run --prefix ./test/core test && npm run --prefix ./test/node test && npm run --prefix ./test/react test && npm run --prefix ./test/typescript test && npm run --prefix ./test/node-typescript test && npm run --prefix ./test/react-typescript test",
-        "test": "npm run eslint && npm run test:rules && npm run test:data",
+        "test": "npm run eslint && npm run test:config-names && npm run test:rules && npm run test:data",
         "test:rules": "node --test test/rules-snapshot.test.js",
-        "test:rules:update": "node test/rules-snapshot.test.js --update"
+        "test:rules:update": "node test/rules-snapshot.test.js --update",
+        "test:config-names": "node --test test/config-names.test.js"
     },
     "peerDependencies": {
         "@eslint-react/eslint-plugin": "*",

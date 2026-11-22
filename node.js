@@ -17,6 +17,8 @@ const nodeDelta = [
     // },
 
     {
+        name: 'ironplate/node/import-x-extensions',
+
         rules: {
             'import-x/extensions': [
                 'error',
@@ -35,6 +37,8 @@ const nodeDelta = [
     },
 
     {
+        name: 'ironplate/node/n',
+
         plugins: {
             n: pluginN
         },

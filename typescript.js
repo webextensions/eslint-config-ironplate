@@ -20,11 +20,16 @@ const typeScriptDelta = [
     ...tseslint.configs.recommended.map(function (config) {
         return {
             ...config,
+            // Prefixed upstream name (eg: "ironplate/typescript/typescript-eslint/recommended"), since this is
+            // ironplate's modified copy (re-scoped "files")
+            name: `ironplate/typescript/${config.name}`,
             files: typeScriptFileGlobs
         };
     }),
 
     {
+        name: 'ironplate/typescript/rules',
+
         files: typeScriptFileGlobs,
 
         rules: {
@@ -69,6 +74,8 @@ const typeScriptDelta = [
     },
 
     {
+        name: 'ironplate/typescript/import-x',
+
         settings: {
             // https://github.com/un-ts/eslint-plugin-import-x#import-xresolver-next
             'import-x/resolver-next': [

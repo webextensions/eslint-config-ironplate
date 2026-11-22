@@ -17,6 +17,8 @@ const reactFileGlobs = [
 // The React-specific additions on top of the core config (exported for composite configs, eg: react-typescript.js)
 const reactDelta = [
     {
+        name: 'ironplate/react/base',
+
         files: reactFileGlobs,
 
         languageOptions: {
@@ -60,6 +62,7 @@ const reactDelta = [
     },
 
     {
+        name: 'ironplate/react/react-hooks',
         files: reactFileGlobs,
         plugins: {
             'react-hooks': pluginReactHooks
@@ -73,6 +76,7 @@ const reactDelta = [
     },
 
     {
+        name: 'ironplate/react/react-refresh',
         files: reactFileGlobs,
         plugins: {
             'react-refresh': pluginReactRefresh
@@ -85,6 +89,9 @@ const reactDelta = [
     // Include the @eslint-react/eslint-plugin recommended config (which also contains the plugin definitions)
     {
         ...pluginEslintReact.configs.recommended,
+        // Prefixed upstream name (it must stay after the spread): this object is ironplate's modified copy of
+        // "@eslint-react/recommended" (re-scoped "files" and the rule overrides below)
+        name: `ironplate/react/${pluginEslintReact.configs.recommended.name}`,
         files: reactFileGlobs, // must stay after the spread (so the recommended config can't clobber it)
         rules: {
             ...pluginEslintReact.configs.recommended.rules,

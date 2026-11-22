@@ -20,8 +20,14 @@ import pluginN from 'eslint-plugin-n';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 
+// Every config object carries a "name" ("ironplate/<module>/<topic>"), the standard flat-config label: it shows up in
+// "npx @eslint/config-inspector" and in some ESLint error messages, and test/config-names.test.js uses it to catch a
+// config object being applied twice (eg: by spreading two full presets, which would silently revert the overrides in
+// between)
 const thisConfig = [
     {
+        name: 'ironplate/core/base',
+
         plugins: {
         },
 
@@ -87,6 +93,8 @@ const thisConfig = [
     },
 
     {
+        name: 'ironplate/core/stylistic',
+
         plugins: {
             '@stylistic': pluginStylistic
         },
@@ -223,6 +231,8 @@ const thisConfig = [
     },
 
     {
+        name: 'ironplate/core/import-x',
+
         plugins: {
             'import-x': pluginImportX
         },
@@ -265,6 +275,8 @@ const thisConfig = [
     },
 
     {
+        name: 'ironplate/core/n',
+
         plugins: {
             n: pluginN
         },
@@ -299,6 +311,8 @@ const thisConfig = [
     },
 
     {
+        name: 'ironplate/core/promise',
+
         plugins: {
             promise: pluginPromise
         },
@@ -308,6 +322,8 @@ const thisConfig = [
     },
 
     {
+        name: 'ironplate/core/unicorn',
+
         plugins: {
             unicorn: pluginUnicorn
         },
