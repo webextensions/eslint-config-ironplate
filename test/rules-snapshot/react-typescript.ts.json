@@ -167,7 +167,7 @@
         "import-x/default": [ 0 ],
         "import-x/export": [ 0 ],
         "import-x/exports-last": [ 2 ],
-        "import-x/extensions": [ 2, "never", { "ignorePackages": true, "pattern": { "cjs": "always", "cts": "always", "js": "always", "json": "always", "jsx": "always", "mjs": "always", "mts": "always", "ts": "always", "tsx": "always" } } ],
+        "import-x/extensions": [ 2, "always", { "ignorePackages": true, "checkTypeImports": true } ],
         "import-x/named": [ 0 ],
         "import-x/namespace": [ 0 ],
         "import-x/no-default-export": [ 2 ],

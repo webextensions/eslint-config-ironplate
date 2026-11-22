@@ -116,26 +116,6 @@ const typeScriptDelta = [
                     })()
                 })
             ]
-        },
-
-        rules: {
-            'import-x/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        cjs: 'always',
-                        cts: 'always',
-                        js: 'always',
-                        json: 'always',
-                        mjs: 'always',
-                        mts: 'always',
-                        ts: 'always',
-                        tsx: 'always'
-                    }
-                }
-            ]
         }
     }
 ];

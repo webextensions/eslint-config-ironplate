@@ -19,34 +19,7 @@ const thisConfig = [
         };
     }),
 
-    ...typeScriptDelta,
-
-    {
-        name: 'ironplate/react-typescript/import-x-extensions',
-
-        rules: {
-            // Union of the React and TypeScript deltas' "import-x/extensions" patterns (neither covers both the JSX
-            // and the TypeScript extensions); must stay after both the deltas
-            'import-x/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        cjs: 'always',
-                        cts: 'always',
-                        js: 'always',
-                        json: 'always',
-                        jsx: 'always',
-                        mjs: 'always',
-                        mts: 'always',
-                        ts: 'always',
-                        tsx: 'always'
-                    }
-                }
-            ]
-        }
-    }
+    ...typeScriptDelta
 ];
 
 export default thisConfig;

@@ -17,26 +17,6 @@ const nodeDelta = [
     // },
 
     {
-        name: 'ironplate/node/import-x-extensions',
-
-        rules: {
-            'import-x/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        cjs: 'always',
-                        js: 'always',
-                        json: 'always',
-                        mjs: 'always'
-                    }
-                }
-            ]
-        }
-    },
-
-    {
         name: 'ironplate/node/n',
 
         plugins: {

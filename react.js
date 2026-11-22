@@ -35,21 +35,6 @@ const reactDelta = [
         },
 
         rules: {
-            'import-x/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        cjs: 'always',
-                        js: 'always',
-                        json: 'always',
-                        jsx: 'always',
-                        mjs: 'always'
-                    }
-                }
-            ],
-
             // https://eslint.style/rules/jsx-self-closing-comp
             '@stylistic/jsx-self-closing-comp': [
                 'error',

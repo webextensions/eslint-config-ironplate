@@ -80,7 +80,7 @@
         "import-x/default": [ 2 ],
         "import-x/export": [ 2 ],
         "import-x/exports-last": [ 2 ],
-        "import-x/extensions": [ 2, "never", { "ignorePackages": true, "pattern": { "cjs": "always", "js": "always", "json": "always", "mjs": "always" } } ],
+        "import-x/extensions": [ 2, "always", { "ignorePackages": true, "checkTypeImports": true } ],
         "import-x/named": [ 2 ],
         "import-x/namespace": [ 2 ],
         "import-x/no-default-export": [ 2 ],

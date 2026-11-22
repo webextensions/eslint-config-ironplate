@@ -256,18 +256,17 @@ const thisConfig = [
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/exports-last.md
             'import-x/exports-last': ['error'],
 
-            'import-x/extensions': [
-                'error',
-                'never',
-                {
-                    ignorePackages: true,
-                    pattern: {
-                        js: 'always',
-                        json: 'always',
-                        mjs: 'always'
-                    }
-                }
-            ],
+            // Imports of local files must include the file extension (eg: `import { x } from './utils.js';`), as
+            // required by ES modules (and by TypeScript's "nodenext" module resolution), for type-only imports too.
+            // Packages are exempt (eg: `import express from 'express';`), and so are imports of non-code files which
+            // already carry their extension (eg: './styles.module.css'). This "always" form behaves like an explicit
+            // "never" + per-extension "always" pattern for all real imports, but it is the same for every preset, and
+            // other linters (eg: Oxlint) interpret it the same way.
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/extensions.md
+            'import-x/extensions': ['error', 'always', {
+                ignorePackages: true,
+                checkTypeImports: true
+            }],
 
             // https://github.com/un-ts/eslint-plugin-import-x/blob/HEAD/docs/rules/no-default-export.md
             'import-x/no-default-export': ['error']
