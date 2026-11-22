@@ -23,8 +23,7 @@ const nodeDelta = [
             n: pluginN
         },
         rules: {
-            // "n/callback-return", "n/no-exports-assign", "n/no-missing-require" and
-            // "n/no-unsupported-features/es-syntax" are configured in _core.js
+            // "n/callback-return", "n/no-exports-assign" and "n/no-missing-require" are configured in _core.js
             ...pluginN.configs['flat/recommended'].rules,
 
             'n/hashbang': 'off',
@@ -39,8 +38,8 @@ const nodeDelta = [
             'n/no-unpublished-import': 'off',
             'n/no-unpublished-require': 'off',
 
-            // Re-asserted here (already configured in _core.js) because the "flat/recommended" spread above would
-            // otherwise override the core configuration of this rule with its own options
+            // Without the `ignores: ['modules']` of the "flat/recommended" spread above, ie: the ES module syntax
+            // (import / export) is also checked against the project's Node.js version
             'n/no-unsupported-features/es-syntax': ['error']
 
             // The "n/no-unsupported-features/*" rules ("es-syntax" above, "es-builtins" and "node-builtins" as set by

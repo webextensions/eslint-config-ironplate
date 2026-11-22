@@ -301,10 +301,10 @@ const thisConfig = [
             ],
 
             'n/no-exports-assign': 'error',
-            'n/no-missing-require': ['error'],
+            'n/no-missing-require': ['error']
 
-            // Without a "version" option: it follows the project's Node.js version (see the comment in node.js)
-            'n/no-unsupported-features/es-syntax': ['error']
+            // The "n/no-unsupported-features/*" rules check the code against a Node.js version, so they are part of the
+            // Node.js configs (node.js) only (eg: they would be meaningless for the browser code of the React configs)
         }
     },
 
