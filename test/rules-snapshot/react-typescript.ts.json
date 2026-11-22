@@ -105,7 +105,7 @@
         "@stylistic/one-var-declaration-per-line": [ 2, "always" ],
         "@stylistic/operator-linebreak": [ 2, "after" ],
         "@stylistic/padded-blocks": [ 2, { "blocks": "never", "classes": "never", "switches": "never" }, { "allowSingleLineBlocks": false } ],
-        "@stylistic/quote-props": [ 2, "consistent-as-needed", { "numbers": true } ],
+        "@stylistic/quote-props": [ 2, "as-needed", { "numbers": true } ],
         "@stylistic/quotes": [ 1, "single", { "allowTemplateLiterals": "avoidEscape", "avoidEscape": true, "ignoreStringLiterals": false } ],
         "@stylistic/rest-spread-spacing": [ 2, "never" ],
         "@stylistic/semi": [ 2, "always" ],

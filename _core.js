@@ -69,7 +69,7 @@ const coreConfigs = [
             ...eslintJs.configs.recommended.rules,
 
             'array-callback-return': ['error'],
-            'eqeqeq': 'error',
+            eqeqeq: 'error',
             'id-denylist': ['error', 'DO_NOT_COMMIT', 'DO_NOT_UNCOMMENT'],
             'no-alert': ['error'],
             'no-bitwise': 'error',
@@ -166,7 +166,7 @@ const coreConfigs = [
                         '<>': 'off',
                         '[]': 'off',
                         '{}': { singleLine: { spacing: 'always' } },
-                        'IfStatement': 'off'
+                        IfStatement: 'off'
                     }
                 }
             ],
@@ -194,7 +194,7 @@ const coreConfigs = [
             '@stylistic/operator-linebreak': ['error', 'after'],
             '@stylistic/quote-props': [
                 'error',
-                'consistent-as-needed',
+                'as-needed',
                 {
                     numbers: true
                 }
